@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Map;
 
 import com.meal_order_detail.model.MealOrderDetailVO;
 
@@ -44,6 +43,14 @@ public class MealOrderService {
 		mealOrderVO.setPay_sts(mealOrderSts);
 		dao.update(mealOrderVO);
 		return mealOrderVO;
+	}
+	
+	public void updatePickupTime(String mealOrderNo) {
+		dao.updatePickupTime(mealOrderNo);
+	}
+	
+	public List<MealOrderVO> searchToday(Date today){
+		return dao.searchToday(today);
 	}
 
 	public MealOrderVO searchByOrderNo(String mealOrderNo) {

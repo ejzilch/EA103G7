@@ -7,8 +7,16 @@
 <%@ page import="com.meal_order.model.*"%>
 
 <% 
+	List<MealOrderVO> list = (ArrayList)request.getAttribute("orderList");
+	if(list==null || list.size()<0){
 	MealOrderService mealOrderSrv = new MealOrderService();
-	List<MealOrderVO> list = mealOrderSrv.getAll();
+	List<MealOrderVO> todayList = mealOrderSrv.searchToday(new Date());
+	 list = new ArrayList<>();
+		for(MealOrderVO mealOrderVO:todayList){
+			if(mealOrderVO.getMeal_order_sts() == 1)
+				list.add(mealOrderVO);
+		}
+	}
 	pageContext.setAttribute("list", list);
 
 %>
@@ -170,13 +178,13 @@ text-decoration: underline;
 				</div>
 			</nav>
 
-			<h5 style="font-weight: 900; display: inline-block;">一般員工專區</h5><span> - 訂餐訂單管理</span>
+			<h5 style="font-weight: 900; display: inline-block;">一般員工專區</h5><span> - 餐點派工管理</span>
 			<a href="<%=request.getContextPath()%>/back-end/back-index_New.jsp" style="display: inline-block; font-size: 8px; font-weight: 900; color: #dea554; text-decoration: none; margin-left: 20px;" onMouseOver="this.style.color='#ffbc5e';" onMouseOut="this.style.color='#dea554';">返回首頁</a>			
 			<p>
 				<table id="table-1">
 					<tr>
 						<td>
-							<h3 style="margin-bottom:0;">查看所有訂餐訂單</h3>
+							<h3 style="margin-bottom:0;">查看今日未派工訂單</h3>
 						</td>
 					</tr>
 				</table>
@@ -219,7 +227,7 @@ text-decoration: underline;
 				至 <input type="text" name="pickup_time" class="f_date1"/> 之間</td>
 				<td>
 				<input type="submit" value="查詢結果"/>
-				<input type="hidden" name="action" value="queryAll"/></td>
+				<input type="hidden" name="action" value="asignQuery"/></td>
 				</tr>
 				
 				</table>
@@ -239,38 +247,50 @@ text-decoration: underline;
 					<thead style="text-align: center;">
 						<tr>
 							<th style="width: 10%;">訂餐編號</th>
-							<th style="width: 10%;">員工編號</th>
-							<th style="width: 10%;">會員編號</th>
-							<th style="width: 15%;">訂餐時間</th>
+<!-- 							<th style="width: 10%;">員工編號</th> -->
+<!-- 							<th style="width: 10%;">會員編號</th> -->
+<!-- 							<th style="width: 15%;">訂餐時間</th> -->
 							<th style="width: 15%;">預計取餐時間</th>
-							<th style="width: 10%;">訂單金額</th>
-							<th style="width: 10%;">通知狀態</th>
-							<th style="width: 10%;">付款狀態</th>
+<!-- 							<th style="width: 10%;">訂單金額</th> -->
+<!-- 							<th style="width: 10%;">通知狀態</th> -->
+<!-- 							<th style="width: 10%;">付款狀態</th> -->
 							<th style="width: 10%;">訂單狀態</th>
 						</tr>
 					</thead>
-					<%@ include file="page1.file"%>
+					<%@ include file="asignPage1.file"%>
 					<tbody>
 					<c:forEach var="mealOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+						<form action="<%= request.getContextPath()%>/MealOrderServlet.do" method="POST">
 						<tr>
 							<td style="text-align: center;"><a href="<%= request.getContextPath() %>/MealOrderServlet.do?meal_order_no=${mealOrderVO.meal_order_no}&action=search&reqURL=<%= request.getServletPath()%>&whichPage=<%= whichPage%>">${mealOrderVO.meal_order_no}</a></td>
-							<td style="text-align: center;">${mealOrderVO.emp_no}</td>
-							<td style="text-align: center;">${mealOrderVO.mem_no!=null ? mealOrderVO.mem_no :'非會員顧客'}</td>
-							<td style="text-align: center;">${mealOrderSrv2.dateFormat(mealOrderVO.order_time)}</td>
+<%-- 							<td style="text-align: center;">${mealOrderVO.emp_no}</td> --%>
+<%-- 							<td style="text-align: center;">${mealOrderVO.mem_no!=null ? mealOrderVO.mem_no :'非會員顧客'}</td> --%>
+<%-- 							<td style="text-align: center;">${mealOrderSrv2.dateFormat(mealOrderVO.order_time)}</td> --%>
 							<td style="text-align: center;">${mealOrderVO.pickup_time !=null ? mealOrderSrv2.dateFormat(mealOrderVO.pickup_time) : '現場用餐'}</td>
-							<td style="text-align: center;">${mealOrderVO.amount}</td>
-							<td style="text-align: center;">${mealOrderVO.noti_sts == 0 ?'<font color="red">未通知</font>':'<font color="green">已通知</font>'}</td>
-							<td style="text-align: center;">${mealOrderVO.pay_sts == 0?'<font color="red">未付款</font>':'<font color="green">已付款</font>'}</td>
+<%-- 							<td style="text-align: center;">${mealOrderVO.amount}</td> --%>
+<%-- 							<td style="text-align: center;">${mealOrderVO.noti_sts == 0 ?'<font color="red">未通知</font>':'<font color="green">已通知</font>'}</td> --%>
+<%-- 							<td style="text-align: center;">${mealOrderVO.pay_sts == 0?'<font color="red">未付款</font>':'<font color="green">已付款</font>'}</td> --%>
 							<td style="text-align: center;"><c:if test="${mealOrderVO.meal_order_sts == 0}"><font color="red">已取消</font></c:if>
    														 	<c:if test="${mealOrderVO.meal_order_sts == 1}">未派工</c:if>
    														 	<c:if test="${mealOrderVO.meal_order_sts == 2}">已派工</c:if>
     														<c:if test="${mealOrderVO.meal_order_sts == 3}">出餐未取</c:if>
     														<c:if test="${mealOrderVO.meal_order_sts == 4}"><font color="green">已完成</font></c:if></td>
+    						
+    						<td style="text-align: center;"><c:if test="${mealOrderVO.meal_order_sts == 1}">
+    														<input type="submit" value="派工製作"/>
+    														<input type="hidden" name="action" value="update"/>
+    														<input type="hidden" name="reqURL" value="<%= request.getServletPath()%>"/>
+    														<input type="hidden" name="whichPage" value="<%= whichPage%>"/>
+    														<input type="hidden" name="meal_order_no" value="${mealOrderVO.meal_order_no}"/>
+    														<input type="hidden" name="meal_order_sts" value="2"/>
+    														<input type="hidden" name="noti_sts" value="${mealOrderVO.noti_sts}"/>
+    														<input type="hidden" name="pay_sts" value="${mealOrderVO.pay_sts}"/></c:if></td>
 						</tr>
+						</form>
 					</c:forEach>
 					</tbody>
 				</table>
-				<%@ include file="page2.file"%>
+				<%@ include file="asignPage2.file"%>
 			</p>
 		</div>
 	</div>

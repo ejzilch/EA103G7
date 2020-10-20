@@ -103,10 +103,10 @@ public class MealOrderServlet extends HttpServlet {
 			if (true) {
 				// 錯誤驗證(結帳金流?)
 			}
-			
+
 			mealList.removeAllElements();
 			setList.removeAllElements();
-			
+
 			MealOrderService mealOrderSrv = new MealOrderService();
 			mealOrderVO = (MealOrderVO) (mealOrderSrv.addOrder(memNo, empNo, mealOrderSts, amount, notiSts, paySts,
 					pickupTime, detailList)).get("mealOrderVO");
@@ -176,7 +176,7 @@ public class MealOrderServlet extends HttpServlet {
 
 		}
 
-		if ("update".equals(action)) {
+		if ("cancel".equals(action)) {
 
 			String mealOrderNo = (String) req.getParameter("meal_order_no");
 
@@ -199,19 +199,42 @@ public class MealOrderServlet extends HttpServlet {
 			}
 		}
 
+		if ("update".equals(action)) {
+			String reqURL = req.getParameter("reqURL");
+			String whichPage = req.getParameter("whichPage");
+			String returnPath = reqURL;
+
+			String mealOrderNo = (String) req.getParameter("meal_order_no");
+			Integer mealOrderSts = new Integer(req.getParameter("meal_order_sts"));
+			Integer notiSts = new Integer(req.getParameter("noti_sts"));
+			Integer paySts = new Integer(req.getParameter("pay_sts"));
+			MealOrderService mealOrderSrv = new MealOrderService();
+			MealOrderVO mealOrderVO = mealOrderSrv.searchByOrderNo(mealOrderNo);
+			mealOrderSrv.updateOrderSts(mealOrderNo, mealOrderSts, notiSts, paySts);
+			if (whichPage != null) {
+				returnPath = reqURL + "?whichPage=" + whichPage;
+			}
+			req.setAttribute("returnPath", returnPath);
+			req.setAttribute("mealOrderVO", mealOrderVO);
+			String url = returnPath;
+			RequestDispatcher success = req.getRequestDispatcher(url);
+			success.forward(req, res);
+
+		}
+
 		if ("search".equals(action)) {
 			String reqURL = req.getParameter("reqURL");
 			String whichPage = null;
-			if(req.getParameter("whichPage")!=null) {
+			if (req.getParameter("whichPage") != null) {
 				whichPage = req.getParameter("whichPage");
 			}
 			String returnPath = reqURL;
 			String mealOrderNo = req.getParameter("meal_order_no");
-			
+
 			MealOrderService mealOrderSrv = new MealOrderService();
 			MealOrderVO mealOrderVO = mealOrderSrv.searchByOrderNo(mealOrderNo);
-			if(whichPage!=null) {
-				 returnPath =reqURL +"?whichPage="+whichPage;
+			if (whichPage != null) {
+				returnPath = reqURL + "?whichPage=" + whichPage;
 			}
 			req.setAttribute("returnPath", returnPath);
 			req.setAttribute("mealOrderVO", mealOrderVO);
@@ -219,13 +242,37 @@ public class MealOrderServlet extends HttpServlet {
 			RequestDispatcher success = req.getRequestDispatcher(url);
 			success.forward(req, res);
 		}
+		if ("asignQuery".equals(action)) {
+			Map<String, String[]> map = (HashMap) session.getAttribute("asignMap");
+			if (req.getParameter("whichPage") == null) {
+				Map<String, String[]> map2 = new HashMap<>(req.getParameterMap());
+				session.setAttribute("asignMap", map2);
+				map = map2;
+			}
+			MealOrderService mealOrderSrv = new MealOrderService();
+			List<MealOrderVO> orderList = mealOrderSrv.getAll(map);
+			System.out.println(req.getRequestURI());
+			System.out.println(req.getRequestURL());
+			req.setAttribute("orderList", orderList);
+			req.getRequestDispatcher("/back-end/mealOrder/asignOrder.jsp").forward(req, res);
+
+		}
 
 		if ("queryAll".equals(action)) {
 
-			Map<String, String[]> map = new HashMap<>(req.getParameterMap());
+			Map<String, String[]> map = (HashMap) session.getAttribute("queryAllMap");
+//			if (map == null || map.isEmpty()) {
+			if (req.getParameter("whichPage") == null) {
+				Map<String, String[]> map2 = new HashMap<>(req.getParameterMap());
+				session.setAttribute("queryAllMap", map2);
+				map = map2;
+
+			}
+//			}
 			MealOrderService mealOrderSrv = new MealOrderService();
 			List<MealOrderVO> orderList = mealOrderSrv.getAll(map);
-
+			System.out.println(req.getRequestURI());
+			System.out.println(req.getRequestURL());
 			req.setAttribute("orderList", orderList);
 			req.getRequestDispatcher("/back-end/mealOrder/listQueryOrder2.jsp").forward(req, res);
 

@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.naming.Context;
@@ -35,6 +37,7 @@ public class MealOrderDAO implements MealOrderDAO_interface {
 
 	private static final String INSERT = "INSERT INTO MEAL_ORDER(MEAL_ORDER_NO,MEM_NO,EMP_NO,MEAL_ORDER_STS,AMOUNT,ORDER_TIME,NOTI_STS,PAY_STS,PICKUP_TIME) VALUES ('MEO' || LPAD(SEQ_MEAL_ORDER_NO.NEXTVAL,4,0),?,?,?,?,CURRENT_TIMESTAMP,?,?,?)";
 	private static final String UPDATE = "UPDATE MEAL_ORDER SET MEAL_ORDER_STS=?,NOTI_STS=?,PAY_STS=? WHERE MEAL_ORDER_NO=?";
+	private static final String UPDATEPICKUPTIME = "UPDATE MEAL_ORDER SET PICKUP_TIME CURRENT_TIMESTAMP WHERE MEAL_ORDER_NO =?";
 	private static final String GETONE = "SELECT * FROM MEAL_ORDER WHERE MEAL_ORDER_NO = ?";
 	private static final String GETBYORDERSTS = "SELECT * FROM MEAL_ORDER WHERE MEAL_ORDER_STS = ?";
 	private static final String GETBYNOTISTS = "SELECT * FROM MEAL_ORDER WHERE NOTI_STS = ?";
@@ -147,7 +150,42 @@ public class MealOrderDAO implements MealOrderDAO_interface {
 			}
 		}
 	};
+	
+	public void updatePickupTime (String mealOrderNo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATEPICKUPTIME);
+
+			pstmt.setString(1, mealOrderNo);
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
+		
+	};
+	
 	public MealOrderVO searchByOrderNo(String mealOrderNo) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -323,6 +361,71 @@ public class MealOrderDAO implements MealOrderDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GETBYPAYSTS);
 			pstmt.setInt(1, paySts);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				mealOrderVO = new MealOrderVO();
+				mealOrderVO.setMeal_order_no(rs.getString("meal_order_no"));
+				mealOrderVO.setMem_no(rs.getString("mem_no"));
+				mealOrderVO.setEmp_no(rs.getString("emp_no"));
+				mealOrderVO.setMeal_order_sts(rs.getInt("meal_order_sts"));
+				mealOrderVO.setAmount(rs.getInt("amount"));
+				mealOrderVO.setOrder_time(rs.getTimestamp("order_time"));
+				mealOrderVO.setNoti_sts(rs.getInt("noti_sts"));
+				mealOrderVO.setPay_sts(rs.getInt("pay_sts"));
+				mealOrderVO.setPickup_time(rs.getTimestamp("pickup_time"));
+				list.add(mealOrderVO);
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	};
+	
+	public List<MealOrderVO> searchToday(Date today) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MealOrderVO mealOrderVO = null;
+		List<MealOrderVO> list = new ArrayList<MealOrderVO>();
+
+		try {
+			con = ds.getConnection();
+			Date now = new Date();
+			today.setHours(0);
+			today.setMinutes(0);
+			now.setHours(23);
+			now.setMinutes(59);
+			SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String begin = ft.format(today);
+			String end = ft.format(now);
+			System.out.println(begin);
+			System.out.println(end);
+			String sql = "SELECT * FROM MEAL_ORDER WHERE PICKUP_TIME >= TO_DATE('"+ begin +"','YYYY-MM-DD hh24:mi') AND PICKUP_TIME <= TO_DATE('"+ end +"','YYYY-MM-DD hh24:mi') ORDER BY PICKUP_TIME";
+			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
