@@ -27,7 +27,7 @@ public class SeatObjServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
+		System.out.println(123);
 		/**************************** 桌位物件刪除(修改狀態) ****************************/
 		if ("delete_use_update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
