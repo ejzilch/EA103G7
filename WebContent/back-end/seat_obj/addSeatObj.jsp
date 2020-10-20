@@ -39,7 +39,7 @@
 		</div>
 		<input type="hidden" name="action" value="upload_seat_obj">
 	</form>
-<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/js/jquery-1.12.4.js"></script>
 <script src="<%=request.getContextPath()%>/back-end/js/jquery-ui-1.12.1.js"></script>
 <!-- 因為是從servletController那邊forward過來，參考路徑需由servlet角度參考 -->
 <script src="<%=request.getContextPath()%>/back-end/js/addSeatObjUpload.js"></script>

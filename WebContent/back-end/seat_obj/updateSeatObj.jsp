@@ -219,7 +219,7 @@
 	</div>
 
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+    <script src="<%=request.getContextPath()%>/back-end/js/jquery-1.12.4.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/jquery-ui-1.12.1.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/setSeatObj.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/updateSeatObjUpload.js"></script>

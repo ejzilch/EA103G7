@@ -270,7 +270,7 @@
 			</p>	
 		</div>
 	</div>
-    <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+    <script src="<%=request.getContextPath()%>/back-end/js/jquery-1.12.4.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/jquery-ui-1.12.1.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/addSeatObjUpload.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/setSeatObj.js"></script>
