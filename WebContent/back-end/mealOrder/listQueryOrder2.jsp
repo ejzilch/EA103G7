@@ -19,7 +19,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>訂單管理-listAll</title>
+<title>訂單管理-listQuery</title>
 
 <jsp:useBean id="empSvc" scope="page" class="com.emp.model.EmpService"></jsp:useBean>
 <jsp:useBean id="mealOrderSrv2" scope="page" class="com.meal_order.model.MealOrderService"/>
@@ -250,11 +250,11 @@ text-decoration: underline;
 							<th style="width: 10%;">訂單狀態</th>
 						</tr>
 					</thead>
-					<%@ include file="page1.file"%>
+					<%@ include file="queryPage1.file"%>
 					<tbody>
 					<c:forEach var="mealOrderVO" items="${orderList}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<tr>
-							<td style="text-align: center;"><a href="<%= request.getContextPath() %>/MealOrderServlet.do?meal_order_no=${mealOrderVO.meal_order_no}&action=search">${mealOrderVO.meal_order_no}</a></td>
+							<td style="text-align: center;"><a href="<%= request.getContextPath() %>/MealOrderServlet.do?meal_order_no=${mealOrderVO.meal_order_no}&action=search&reqURL=<%= request.getServletPath()%>&whichPage=<%= whichPage%>">${mealOrderVO.meal_order_no}</a></td>
 							<td style="text-align: center;">${mealOrderVO.emp_no}</td>
 							<td style="text-align: center;">${mealOrderVO.mem_no!=null ? mealOrderVO.mem_no :'非會員顧客'}</td>
 							<td style="text-align: center;">${mealOrderSrv2.dateFormat(mealOrderVO.order_time)}</td>
@@ -271,7 +271,7 @@ text-decoration: underline;
 					</c:forEach>
 					</tbody>
 				</table>
-				<%@ include file="page2.file"%>
+				<%@ include file="queryPage2.file"%>
 			</p>
 		</div>
 	</div>
