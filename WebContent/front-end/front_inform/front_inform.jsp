@@ -137,7 +137,7 @@ padding-right: 17px;
 	<%-- 以下為該頁面其他內容 --%>
 	<div class="msg">
 		<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="message()">
-			<img src="<%=request.getContextPath()%>/front-end/images/help.png" alt="">
+			<img src="<%=request.getContextPath()%>/front-end/images/msg.png" alt="">
 		</button>
 		<div>
 		</div>

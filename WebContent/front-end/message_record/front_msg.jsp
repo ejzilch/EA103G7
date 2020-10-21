@@ -70,6 +70,10 @@ th, td {
 .modal-open .msg {
 padding-right: 17px;
 }
+
+#fi_cont{
+	color: #000;
+}
 </style>
 </head>
 
@@ -137,7 +141,7 @@ padding-right: 17px;
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 		</button>
-		<img src="<%=request.getContextPath()%>/front-end/images/help.png" alt="">
+		<img src="<%=request.getContextPath()%>/front-end/images/msg.png" alt="">
 	</div>
 	</section>
 	<div class="py-1 bg-black top">
@@ -411,7 +415,7 @@ padding-right: 17px;
 				 success:function(res){
 					if(fi_cont.style.display == "none"){
 						fi_cont.style.display = "block";
-						fi_cont.style.position = "absolute";
+						fi_cont.style.position = "fixed";
 						fi_cont.style.zIndex = '550';
 						fi_cont.style.top = '40px';
 					    fi_cont.style.right = '20%';
