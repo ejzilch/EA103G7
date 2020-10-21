@@ -45,8 +45,8 @@ public class CompositeQuery {
 
 			} else {
 				String value = map.get(key)[0];
-				System.out.println(key);
-				System.out.println(value);
+//				System.out.println(key);
+//				System.out.println(value);
 				if (value != null && value.trim().length() != 0 && !"action".equals(key)) {
 					count++;
 					String aCondition = getCondition(key, value.trim());

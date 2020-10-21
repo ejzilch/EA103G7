@@ -262,7 +262,7 @@ text-decoration: underline;
 					<c:forEach var="mealOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<form action="<%= request.getContextPath()%>/MealOrderServlet.do" method="POST">
 						<tr>
-							<td style="text-align: center;"><a href="<%= request.getContextPath() %>/MealOrderServlet.do?meal_order_no=${mealOrderVO.meal_order_no}&action=search&reqURL=<%= request.getServletPath()%>&whichPage=<%= whichPage%>">${mealOrderVO.meal_order_no}</a></td>
+							<td style="text-align: center;"><a href="<%= request.getContextPath() %>/MealOrderServlet.do?meal_order_no=${mealOrderVO.meal_order_no}&action=search&reqURL=<%= request.getServletPath()%>&whichPage=<%= whichPage%>&queryString=<%= request.getAttribute("action")%>">${mealOrderVO.meal_order_no}</a></td>
 <%-- 							<td style="text-align: center;">${mealOrderVO.emp_no}</td> --%>
 <%-- 							<td style="text-align: center;">${mealOrderVO.mem_no!=null ? mealOrderVO.mem_no :'非會員顧客'}</td> --%>
 <%-- 							<td style="text-align: center;">${mealOrderSrv2.dateFormat(mealOrderVO.order_time)}</td> --%>

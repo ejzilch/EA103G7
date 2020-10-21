@@ -14,12 +14,30 @@
      session.setAttribute("mem_no",mem_no);	//模擬假資料
      String emp_no = "EMP0002";				//模擬假資料
      session.setAttribute("emp_no",emp_no);	//模擬假資料
-     String res_no = "RESO0001";
-     request.setAttribute("res_no", res_no);
+//      String res_no = "RESO0001";
+//      request.setAttribute("res_no", res_no);
 %>
 
 <html>
 <head>
+
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/animate.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/magnific-popup.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/aos.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/ionicons.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/flaticon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/icomoon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/style.css">
+
 <link rel="stylesheet" href="<%= request.getContextPath() %>/front-end/css/bootstrap.min.css">
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>瀏覽菜單</title>
@@ -29,20 +47,20 @@
  	}
   div.container {
   
-      border: 1px solid red;
-      width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
+/*       border: 1px solid red; */
+/*       width: 100%; */
+/*             height: 100%; */
+/*             background-color: rgba(255, 255, 255, 0.9); */
     }
 
     div.container div.col {
-      border: 1px solid blue;
+/*       border: 1px solid blue; */
     }
 
     div.row {
       /* height: 100px; */
-      border: 1px solid green;
-      margin-bottom: 10px;
+/*       border: 1px solid green; */
+       margin-bottom: 10px; 
     }
     #menu p{
 	text-align: right;
@@ -133,6 +151,7 @@
  #cartJSP th{
  text-align: center;
  }
+ 
  #meal-row,#set-row{
  height: 30px;
  background-color:brown;
@@ -140,11 +159,17 @@
  font-weight:bold;
  
  }
+/*  #menu{ */
+/*  height: 200px; */
+/*  overflow: auto; */
+/*  } */
  
   </style>
  </head>
 
 <body>
+
+<jsp:include page="/front-end/head.jsp" flush="true"/>
 
   <div class="container">
   
@@ -312,6 +337,8 @@
      </c:if>
      </div>		<!-- cartJSP -->
     </div>		<!-- container -->
+    
+    <jsp:include page="/front-end/footer.jsp" flush="true"/>
 
   
 
@@ -674,5 +701,29 @@
   <script src="<%= request.getContextPath() %>/front-end/js/jquery-3.4.1.min.js"></script>
   <script src="<%= request.getContextPath() %>/front-end/js/popper.min.js"></script>
   <script src="<%= request.getContextPath() %>/front-end/js/bootstrap.min.js"></script>
+  
+  
+  <!-- loader -->
+        <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery.easing.1.3.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery.waypoints.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery.stellar.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/owl.carousel.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery.magnific-popup.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/aos.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery.animateNumber.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/bootstrap-datepicker.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/jquery.timepicker.min.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/scrollax.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/google-map.js"></script>
+        <script src="<%=request.getContextPath()%>/front-end/js/main.js"></script>
+  
 </body>
  
