@@ -2,15 +2,22 @@
 	box-sizing: border-box;
 }
 
-body {
-	margin: 0;
+form {
+	width: 100%;
 }
 
-#container {
-	height: 900px;
+.blank {
+	height: 100%;
+}
+div.container {
+	width: 1800px;
+}
+
+div#container.container {
+	height: 1000px;
 	width: 1400px;
 	border: 1px solid black;
-	position: absolute;
+	position: relative;
 	display: none;
 	/* 	background: whitesmoke */
 	/* 		url('https://s3.amazonaws.com/com.appgrinders.test/images/grid_20.png') */
@@ -34,11 +41,10 @@ body {
 	right: 0px;
 }
 
-label {
-	height: 0;
-	display: inline-block;
-}
-
+/* label { */
+/* 	height: 0; */
+/* 	display: inline-block; */
+/* } */
 .labelOne, .labelTwo {
 	display: none;
 }
@@ -60,14 +66,6 @@ img {
 	cursor: pointer;
 }
 
-span {
-	border: 1px solid black;
-	position: relative;
-	display: inline-block;
-	width: 100%;
-	margin: 10px auto;
-}
-
 .seatName {
 	width: 30px;
 	text-align: center;
@@ -85,40 +83,22 @@ span {
 }
 
 .select_div {
-	width: 30%;
+	width: 100%;
 	text-align: left;
 	font-size: 20px;
-}
-.select_div1 {
-	width: 40%;
-	text-align: left;
-	font-size: 20px;
+	position: relative;
+	top: 10px;
+	display: inline-block;
 }
 
-.select_div res_date {
-	width: 80px;
-	font-size: 20px;
+#orderSeat {
+	height: 40px;
+	display: none;
 }
 
-#floor_list {
-	width: 250px;
-	font-size: 36px;
-}
-
-#time_peri_no {
-	width: 250px;
-	font-size: 28px;
-}
-
-#time_peri_no.option {
-	text-align: center;
-}
-
-#res_date {
-	text-align: center;
-}
-
-#people {
+#time_peri_no, #floor_list, #people , #res_date{
 	width: 180px;
+	height: 40px;
+	font-size: 20px;
 	text-align: center;
 }

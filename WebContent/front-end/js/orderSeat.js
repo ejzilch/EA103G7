@@ -81,6 +81,8 @@ $(document).ready(function() {
 				jsonArray_people = JSON.parse(messages);
 				setJSONArray_people(jsonArray_people);
 				$("#container").css("display", "block");
+				$("#orderSeat").css("display", "inline-block");
+				
 				lock_people = true;//如果業務執行成功，修改鎖狀態
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -188,13 +190,13 @@ $(document).ready(function() {
 				"floor": $("#floor_list").val()
 			},
 			success: function(messages) {
-				$("body > .container").load(ajaxURL + "/front-end/res_order/orderSeat.jsp .container");
+				$("body > div#container.container").load(ajaxURL + "/front-end/res_order/orderSeat.jsp div#container.container");
 				$.getScript(ajaxURL + "/js/jquery-1.12.4.js");
 				$.getScript(ajaxURL + "/front-end/js/orderSeat.js");
 				$.getScript(ajaxURL + "/js/sweetalert.min.js");
 				//				console.log(messages);
 				var jsonArray = JSON.parse(messages);
-				$(".container").empty();
+				$("div#container.container").empty();
 				$("#time_peri_no").empty();
 				$("#people").val("");
 				$("#res_date").val("--請選擇日期--");
@@ -207,11 +209,11 @@ $(document).ready(function() {
 						"position": "absolute",
 						"left": item.seat_x + "px",
 						"top": item.seat_y + "px",
-					}).appendTo(".container");
+					}).appendTo("div#container.container");
 
-					var $drag = $(".container .drag").eq(_index);
+					var $drag = $("div#container.container .drag").eq(_index);
 					$("<label>").appendTo($drag);
-					var $label = $(".container .drag > label:first-child").eq(_index);
+					var $label = $("div#container.container .drag > label:first-child").eq(_index);
 					$("<input>").attr({
 						type: "checkbox",
 						class: "myCheckbox",
@@ -224,7 +226,7 @@ $(document).ready(function() {
 					$("<label>").attr({
 						class: "seatLabel",
 					}).appendTo($drag);
-					var $label2 = $(".container .drag .seatLabel").eq(_index);
+					var $label2 = $("div#container.container .drag .seatLabel").eq(_index);
 					$("<input>").attr({
 						type: "text",
 						class: "seatName",
@@ -295,7 +297,7 @@ $(document).ready(function() {
 					}).text(item.time_start.replace("-", ":"));
 					$("#time_peri_no").append(option);
 				});
-				$(".labelOne").css("display", "block");
+				$(".labelOne").css("display", "inline-block");
 				lock_order_date = true;//如果業務執行成功，修改鎖狀態
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -348,7 +350,8 @@ $(document).ready(function() {
 					});
 				});
 				lock_time_peri_no = true;//如果業務執行成功，修改鎖狀態
-				$(".labelTwo").css("display", "block");
+				$(".labelTwo").css("display", "inline-block");
+				$("#people").val("");
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				lock_time_peri_no = true;//如果業務執行失敗，修改鎖狀態
