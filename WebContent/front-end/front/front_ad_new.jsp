@@ -10,7 +10,7 @@
 	pageContext.setAttribute("list", list);
 %>
 <html>
-<%@ include file="head_ad.jsp"%>
+<%@ include  file="headfinish.jsp"%>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
