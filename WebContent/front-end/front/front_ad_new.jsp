@@ -10,7 +10,7 @@
 	pageContext.setAttribute("list", list);
 %>
 <html>
-<%@ include  file="headfinish.jsp"%>
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +53,7 @@ element.style {
 	margin-left: auto;
 }
 
-a {
+.a {
 	-webkit-transition: .3s all ease;
 	-o-transition: .3s all ease;
 	transition: .3s all ease;
@@ -126,7 +126,7 @@ container {
 	width: 100%;
 }
 </style>
-
+<%@ include  file="/front-end/headfinish.jsp"%>
 <div class="container">
 	<div class="hd" style="margin-bottom: -30px;">
 		<a href="">首頁</a> <span>最新消息</span>
@@ -139,7 +139,7 @@ container {
 
 	<hr class="mt-2 mb-5">
 
-	<div class="row text-center text-lg-left">
+	<div class="row text-center text-lg-left" >
 		<%@ include file="page1-1.file"%>
 
 
@@ -153,7 +153,7 @@ container {
 				</a>
 			</div>
 
-			<div class="col-lg-3 col-md-4 col-6">
+			<div class="col-lg-3 col-md-4 col-6"  style="color: #3e2605;">
 				<div>${adVO.ad_add_date}</div>
 				
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ad/ad.do">
