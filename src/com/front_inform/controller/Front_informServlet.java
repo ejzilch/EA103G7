@@ -44,7 +44,7 @@ public class Front_informServlet extends HttpServlet {
 					errorMsgs.add("查無會員資料");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 					failureView.forward(req, res);
 					return; // 此區塊代表有錯誤，會導回去，程式中斷
 				}
@@ -83,7 +83,7 @@ public class Front_informServlet extends HttpServlet {
 				
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -107,7 +107,7 @@ public class Front_informServlet extends HttpServlet {
 					errorMsgs.add("查無會員資料");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 					failureView.forward(req, res);
 					return; // 此區塊代表有錯誤，會導回去，程式中斷
 				}
@@ -126,7 +126,7 @@ public class Front_informServlet extends HttpServlet {
 				
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -147,7 +147,7 @@ public class Front_informServlet extends HttpServlet {
 					errorMsgs.add("查無會員資料");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -158,13 +158,13 @@ public class Front_informServlet extends HttpServlet {
 				req.setAttribute("front_informVOs", front_informVOs);
 				HttpSession session = req.getSession();
 				session.setAttribute("front_informVOs", front_informVOs);
-				String url = "/front-end/fi_msg/fiNmsg.jsp";
+				String url = "/front-end/front_inform/fiNmsg.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);		
 				
 			} catch (Exception e) {
 				errorMsgs.add("查無資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 				failureView.forward(req, res);
 			}
 			
@@ -186,7 +186,7 @@ public class Front_informServlet extends HttpServlet {
 					errorMsgs.add("查無會員資料");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 					failureView.forward(req, res);
 					return; // 此區塊代表有錯誤，會導回去，程式中斷
 				}
@@ -196,7 +196,7 @@ public class Front_informServlet extends HttpServlet {
 				
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/fi_msg/errorPage.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/front_inform/errorPage.jsp");
 				failureView.forward(req, res);
 			}
 			
