@@ -31,7 +31,7 @@
   margin:0;
 }
 .container{
-  border:2px solid red;
+/*   border:2px solid red; */
 }
 #top,#content{
 background-color: lightgray;
@@ -39,8 +39,8 @@ color:white;
 font-weight: bolder;
 }
 .row{
-  border:1px solid green;
-  height:50px;
+/*   border:1px solid green; */
+/*   height:50px; */
   text-align:center;
   
 }
@@ -54,6 +54,7 @@ font-weight: bolder;
 </style>
 </head>
 <body>
+<jsp:include page="/front-end/head.jsp" flush="true"/>
 <div class="container">
 <div id="top" class="row">
   <div class="col">
@@ -135,6 +136,8 @@ font-weight: bolder;
        </c:if>
       </c:forEach>
     </div>
+    
+    <jsp:include page="/front-end/footer.jsp" flush="true"/>
 
 
 

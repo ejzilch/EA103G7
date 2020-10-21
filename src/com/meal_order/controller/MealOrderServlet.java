@@ -101,12 +101,14 @@ public class MealOrderServlet extends HttpServlet {
 			mealOrderVO.setPickup_time(pickupTime);
 
 			if (true) {
-				// 錯誤驗證(結帳金流?)
+//				(結帳 錯誤驗證?)
 			}
-
+			if(mealList!=null) {
 			mealList.removeAllElements();
+			}
+			if(setList!=null) {
 			setList.removeAllElements();
-
+			}
 			MealOrderService mealOrderSrv = new MealOrderService();
 			mealOrderVO = (MealOrderVO) (mealOrderSrv.addOrder(memNo, empNo, mealOrderSts, amount, notiSts, paySts,
 					pickupTime, detailList)).get("mealOrderVO");
@@ -183,7 +185,7 @@ public class MealOrderServlet extends HttpServlet {
 			MealOrderService mealOrderSrv = new MealOrderService();
 			MealOrderVO mealOrderVO = mealOrderSrv.searchByOrderNo(mealOrderNo);
 			if (mealOrderVO.getMeal_order_sts() >= 2) {
-				errormsgs.put("orderUpdate", "訂單已派工,無法取消!");
+				errormsgs.put("orderUpdate", "閮撌脫晷撌�,�瘜���!");
 				req.setAttribute("errormsgs", errormsgs);
 				req.setAttribute("mealOrderVO", mealOrderVO);
 				String url = "front-end/shopping/mealOrderOne.jsp";
@@ -223,6 +225,9 @@ public class MealOrderServlet extends HttpServlet {
 		}
 
 		if ("search".equals(action)) {
+//			System.out.println(req.getParameter("queryString"));
+//			System.out.println(req.getRequestURI());
+//			System.out.println(req.getRequestURL());
 			String reqURL = req.getParameter("reqURL");
 			String whichPage = null;
 			if (req.getParameter("whichPage") != null) {
@@ -235,6 +240,9 @@ public class MealOrderServlet extends HttpServlet {
 			MealOrderVO mealOrderVO = mealOrderSrv.searchByOrderNo(mealOrderNo);
 			if (whichPage != null) {
 				returnPath = reqURL + "?whichPage=" + whichPage;
+			}
+			if((reqURL == null || req.getParameter("queryString")!=null)&&!(req.getParameter("queryString").equals("null"))) {
+				returnPath = req.getServletPath() +"?whichPage=" +whichPage +"&action=" +req.getParameter("queryString");
 			}
 			req.setAttribute("returnPath", returnPath);
 			req.setAttribute("mealOrderVO", mealOrderVO);
@@ -251,8 +259,9 @@ public class MealOrderServlet extends HttpServlet {
 			}
 			MealOrderService mealOrderSrv = new MealOrderService();
 			List<MealOrderVO> orderList = mealOrderSrv.getAll(map);
-			System.out.println(req.getRequestURI());
-			System.out.println(req.getRequestURL());
+//			System.out.println(req.getRequestURI());
+//			System.out.println(req.getRequestURL());
+			req.setAttribute("action", action);
 			req.setAttribute("orderList", orderList);
 			req.getRequestDispatcher("/back-end/mealOrder/asignOrder.jsp").forward(req, res);
 
@@ -271,8 +280,9 @@ public class MealOrderServlet extends HttpServlet {
 //			}
 			MealOrderService mealOrderSrv = new MealOrderService();
 			List<MealOrderVO> orderList = mealOrderSrv.getAll(map);
-			System.out.println(req.getRequestURI());
-			System.out.println(req.getRequestURL());
+//			System.out.println(req.getRequestURI());
+//			System.out.println(req.getRequestURL());
+			req.setAttribute("action", action);
 			req.setAttribute("orderList", orderList);
 			req.getRequestDispatcher("/back-end/mealOrder/listQueryOrder2.jsp").forward(req, res);
 
