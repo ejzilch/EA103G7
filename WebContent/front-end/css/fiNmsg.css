@@ -196,13 +196,27 @@ img {
 	vertical-align: middle;
 }
 
-#chatClose{
-	margin-bottom: 5px;
+#custSvc {
+	width: 128px;
+	display: inline-block;
+	position: fixed;
+	top: 73%;
+	right: 5%;
 }
 
-#sendMsg{
+#chatClose {
+	margin-bottom: 5px;
+	width: 16px;
+}
+
+#sendMsg {
 	margin-left: 15px;
 	margin-top: 10px;
+	width: 24px;
+}
+
+#sidebar_secondary {
+	z-index: 300;
 }
 
 .chat_box .chat_message_wrapper ul.chat_message>li+li {
