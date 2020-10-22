@@ -21,7 +21,6 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap"
 	rel="stylesheet">
-	
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/animate.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/owl.carousel.min.css">
@@ -140,7 +139,7 @@
 	<%-- 客服聊天室開始 --%>
 	<div class="msg">
 		<a href="#" class="open-btn" id="addClass">
-			<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="popMsg()">
+			<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="message()">
 				<img id="custSvc" src="<%=request.getContextPath()%>/front-end/images/msg.png">
 			</button>
 		</a>

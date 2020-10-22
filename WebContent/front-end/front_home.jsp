@@ -3,13 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.front_inform.model.*"%>
+<%@ page import="com.message_record.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="UTF-8">
 
-<title>Front_Inform.jsp</title>
+<title>front_home.jsp</title>
 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,47 +33,13 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/flaticon.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/icomoon.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/fiNmsg.css">
 
 <style>
-.msg {
-	position: fixed;
-	z-index: 500;
-	bottom: 50px;
-	right: 70px;
-}
 
-.blank {
-	width: 500px;
-	height: 1000px;
-}
-table{
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
-.badge {
-  min-width: 1px;
-  padding: 3px 3px;
-  vertical-align: text-bottom;
-  background-color: #FF0000;
-  display: none;
-}
 .modal-open .top,
 .modal-open .msg {
 padding-right: 17px;
-}
-
-#fi_cont{
- color: #000;
 }
 
 </style>
@@ -134,14 +101,96 @@ padding-right: 17px;
 	
 	
 	
-	<%-- 以下為該頁面其他內容 --%>
+	<%-- 客服聊天室開始 --%>
 	<div class="msg">
-		<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="message()">
-			<img src="<%=request.getContextPath()%>/front-end/images/msg.png" alt="">
-		</button>
-		<div>
-		</div>
+		<a href="#" class="open-btn" id="addClass">
+			<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="message()">
+				<img src="<%=request.getContextPath()%>/front-end/images/msg.png" alt="">
+			</button>
+		</a>
+		<div class="container">
+        	<div>
+            	<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+                	<div class="popup-head">
+                    	<div class="popup-head-right pull-right">
+                        	<button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><img id="chatClose" src="<%=request.getContextPath()%>/front-end/images/x.png"></button>
+              	      </div>
+              	  </div>
+              	  <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px); background: #d6fdff;">
+                 	   <div class="chat_box touchscroll chat_box_colors_a">
+                     	   <div class="chat_message_wrapper">
+                        	    <div class="chat_user_avatar">
+                            	    <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                           		</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                    	<p> 您好，請問有什麼能為您服務的嗎？ </p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                        	<div class="chat_message_wrapper chat_message_right">
+                            	<div class="chat_user_avatar">
+                               		<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                            	</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                    	<p>
+                                        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus distinctio dolor earum est hic id impedit ipsum minima mollitia natus nulla perspiciatis quae quasi, quis recusandae, saepe, sunt totam.
+                                        	<span class="chat_message_time">13:34</span>
+                                    	</p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                        	<div class="chat_message_wrapper">
+                            	<div class="chat_user_avatar">
+                               		<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                            	</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                    	<p>
+                                        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ea mollitia pariatur porro quae sed sequi sint tenetur ut veritatis.https://www.facebook.com/iamgurdeeposahan
+                                        	<span class="chat_message_time">23 Jun 1:10am</span>
+                                    	</p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                        	<div class="chat_message_wrapper chat_message_right">
+                            	<div class="chat_user_avatar">
+                                	<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                            	</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                   	 <p> Lorem ipsum dolor sit amet, consectetur. </p>
+                                	</li>
+                               		<li>
+                                    	<p>
+                                        	Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        	<span class="chat_message_time">Friday 13:34</span>
+                                    	</p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                    	</div>
+                	</div>
+                	<div class="chat_submit_box">
+                    	<div class="uk-input-group">
+                        	<div class="gurdeep-chat-box">
+                            	<input type="text" placeholder="Type a message" id="submit_message" name="submit_message" class="md-input">
+                        	</div>
+                        	<span class="uk-input-group-addon">
+                            	<a href="#"><img id="sendMsg" src="<%=request.getContextPath()%>/front-end/images/send.png"></a>
+                        	</span>
+                    	</div>
+                	</div>
+            	</aside>
+        	</div>
+    	</div>
 	</div>
+	<%-- 客服聊天室結束 --%>
+	
+	
+	
+	<%-- 以下為 navbar 內容 --%>
 	<div class="py-1 bg-black top">
 		<div class="container">
 			<div
@@ -157,6 +206,7 @@ padding-right: 17px;
 						</div>
 						<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
 							<p class="mb-0 register-link">
+								<%-- 小鈴鐺圖示開始 --%>
 								<span class="mybb">
 									<span class="badge"> </span>
 									<button type="button" class="btn" style="color: #c8a97e; padding: 0px;" onclick="popFrontInform()">
@@ -164,6 +214,7 @@ padding-right: 17px;
 										<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" /></svg>
 									</button>
 								</span>
+								<%-- 小鈴鐺圖示結束 --%>
 								<span class="mybb"><a href="menu.html" class="myaa">會員中心</a></span>
 								<span class="mybb"><a href="blog.html" class="myaa">註冊</a></span>
 								<span class="mybb"><a href="contact.html" class="myaa">登入</a></span>
@@ -187,16 +238,10 @@ padding-right: 17px;
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a
-						href="<%=request.getContextPath()%>/front-end/front_home.jsp"
-						class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front_home.jsp" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="" class="nav-link">Menu</a></li>
-				<li class="nav-item"><a
-					href="<%=request.getContextPath()%>/front-end/front/front_news-11.jsp"
-					class="nav-link">News</a></li>
-				<li class="nav-item"><a
-						href="<%=request.getContextPath()%>/front-end/front/front_ad_new.jsp"
-						class="nav-link">最新活動</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front/front_news-11.jsp" class="nav-link">News</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front/front_ad_new.jsp" class="nav-link">最新活動</a></li>
 					<li class="nav-item"><a href="" class="nav-link">評價總覽</a></li>
 					<li class="nav-item"><a href="" class="nav-link">餐廳資訊</a></li>
 					<li class="nav-item"><a href="" class="nav-link">候位狀況</a></li>
@@ -210,7 +255,7 @@ padding-right: 17px;
 	
 	<section class="home-slider owl-carousel js-fullheight">
 		<div class="slider-item js-fullheight"
-			style="background-image: url(<%=request.getContextPath()%>/front-end/front/images/11111.jpg);">
+			style="background-image: url(<%=request.getContextPath()%>/front-end/images/carousel_1.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div
@@ -224,7 +269,7 @@ padding-right: 17px;
 			</div>
 		</div>
 		<div class="slider-item js-fullheight"
-			style="background-image: url(<%=request.getContextPath()%>/front-end/front/images/33333.jpg);">
+			style="background-image: url(<%=request.getContextPath()%>/front-end/images/carousel_2.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div
@@ -238,7 +283,7 @@ padding-right: 17px;
 			</div>
 		</div>
 		<div class="slider-item js-fullheight"
-			style="background-image: url(<%=request.getContextPath()%>/front-end/front/images/bg_3.jpg);">
+			style="background-image: url(<%=request.getContextPath()%>/front-end/images/carousel_3.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div
@@ -318,15 +363,15 @@ padding-right: 17px;
 	</section>
 
 	<section class="ftco-section img"
-		style="background-image: url(<%=request.getContextPath()%>/front-end/front/images/storeBg.jpg)"
+		style="background-image: url(<%=request.getContextPath()%>/front-end/images/storeBg.jpg)"
 		data-stellar-background-ratio="0.5">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7 d-flex">
 					<div class="img img-1 mr-md-2"
-						style="background-image: url(<%=request.getContextPath()%>/front-end/front/images/HA.gif);"></div>
+						style="background-image: url(<%=request.getContextPath()%>/front-end/images/HA.gif);"></div>
 					<div class="img img-2 ml-md-2"
-						style="background-image: url(<%=request.getContextPath()%>/front-end/front/images/HA.gif);"></div>
+						style="background-image: url(<%=request.getContextPath()%>/front-end/images/HA.gif);"></div>
 				</div>
 				<div class="col-md-5 wrap-about pt-5 pt-md-5 pb-md-3 ftco-animate">
 					<div class="heading-section mb-4 my-5 my-md-0">
@@ -391,15 +436,15 @@ padding-right: 17px;
 		<div class="carousel-inner">
 
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="<%=request.getContextPath()%>/front-end/front/images/twL_ad_20B20_m7ie5yxyhs.jpg"
+				<img class="d-block w-100" src="<%=request.getContextPath()%>/front-end/images/twL_ad_20B20_m7ie5yxyhs.jpg"
 					alt="twL_ad_20B20_m7ie5yxyhs.jpg">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="<%=request.getContextPath()%>/front-end/front/images/twL_ad_20B20_8n3uh8mz6a.jpg"
+				<img class="d-block w-100" src="<%=request.getContextPath()%>/front-end/images/twL_ad_20B20_8n3uh8mz6a.jpg"
 					alt="twL_ad_20B20_8n3uh8mz6a.jpg">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="<%=request.getContextPath()%>/front-end/front/images/twL_ad_20B20_xym5ycjdaj.jpg"
+				<img class="d-block w-100" src="<%=request.getContextPath()%>/front-end/images/twL_ad_20B20_xym5ycjdaj.jpg"
 					alt="twL_ad_20B20_xym5ycjdaj.jpg">
 			</div>
 		</div>
@@ -407,7 +452,7 @@ padding-right: 17px;
 
 
 	<section class="ftco-section img"
-		style="background-image: url(<%=request.getContextPath()%>/front-end/front/images/33333.jpg)"
+		style="background-image: url(<%=request.getContextPath()%>/front-end/images/carousel_3.jpg)"
 		data-stellar-background-ratio="0.5">
 		<div class="container">
 			<div class="row d-flex">
@@ -595,6 +640,19 @@ padding-right: 17px;
 	  </div>
 	</div>
 	
+	<%-- script 開始 --%>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#addClass").click(function() {
+				$('#sidebar_secondary').addClass('popup-box-on');
+			});
+
+			$("#removeClass").click(function() {
+				$('#sidebar_secondary').removeClass('popup-box-on');
+			});
+		})
+	</script>
 	<script src="<%=request.getContextPath()%>/front-end/js/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/bootstrap.min.js"></script>
 	<script>
