@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.front_inform.model.*"%>
+<%@ page import="com.message_record.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap"
 	rel="stylesheet">
+	
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/animate.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/owl.carousel.min.css">
@@ -36,11 +38,9 @@
 
 <style>
 
-
-
 .modal-open .top,
 .modal-open .msg {
-padding-right: 17px;
+	padding-right: 17px;
 }
 
 .smoke {
@@ -74,6 +74,7 @@ padding-right: 17px;
 }
 
 </style>
+
 </head>
 
 
@@ -138,11 +139,88 @@ padding-right: 17px;
 	
 	<%-- 客服聊天室開始 --%>
 	<div class="msg">
-		<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="popMsg()">
-			<img id="custSvc" src="<%=request.getContextPath()%>/front-end/images/msg.png">
-		</button>
-		<div>
-		</div>
+		<a href="#" class="open-btn" id="addClass">
+			<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="popMsg()">
+				<img id="custSvc" src="<%=request.getContextPath()%>/front-end/images/msg.png">
+			</button>
+		</a>
+		<div class="container">
+        	<div>
+            	<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+                	<div class="popup-head">
+                    	<div class="popup-head-right pull-right">
+                        	<button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><img id="chatClose" src="<%=request.getContextPath()%>/front-end/images/x.png"></button>
+              	      </div>
+              	  </div>
+              	  <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px); background: #d6fdff;">
+                 	   <div class="chat_box touchscroll chat_box_colors_a">
+                     	   <div class="chat_message_wrapper">
+                        	    <div class="chat_user_avatar">
+                            	    <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                           		</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                    	<p> 您好，請問有什麼能為您服務的嗎？ </p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                        	<div class="chat_message_wrapper chat_message_right">
+                            	<div class="chat_user_avatar">
+                               		<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                            	</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                    	<p>
+                                        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus distinctio dolor earum est hic id impedit ipsum minima mollitia natus nulla perspiciatis quae quasi, quis recusandae, saepe, sunt totam.
+                                        	<span class="chat_message_time">13:34</span>
+                                    	</p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                        	<div class="chat_message_wrapper">
+                            	<div class="chat_user_avatar">
+                               		<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                            	</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                    	<p>
+                                        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ea mollitia pariatur porro quae sed sequi sint tenetur ut veritatis.https://www.facebook.com/iamgurdeeposahan
+                                        	<span class="chat_message_time">23 Jun 1:10am</span>
+                                    	</p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                        	<div class="chat_message_wrapper chat_message_right">
+                            	<div class="chat_user_avatar">
+                                	<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                            	</div>
+                            	<ul class="chat_message">
+                                	<li>
+                                   	 <p> Lorem ipsum dolor sit amet, consectetur. </p>
+                                	</li>
+                               		<li>
+                                    	<p>
+                                        	Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        	<span class="chat_message_time">Friday 13:34</span>
+                                    	</p>
+                                	</li>
+                            	</ul>
+                        	</div>
+                    	</div>
+                	</div>
+                	<div class="chat_submit_box">
+                    	<div class="uk-input-group">
+                        	<div class="gurdeep-chat-box">
+                            	<input type="text" placeholder="Type a message" id="submit_message" name="submit_message" class="md-input">
+                        	</div>
+                        	<span class="uk-input-group-addon">
+                            	<a href="#"><img id="sendMsg" src="<%=request.getContextPath()%>/front-end/images/send.png"></a>
+                        	</span>
+                    	</div>
+                	</div>
+            	</aside>
+        	</div>
+    	</div>
 	</div>
 	<%-- 客服聊天室結束 --%>
 
@@ -176,6 +254,7 @@ padding-right: 17px;
 								<span class="mybb"><a href="menu.html" class="myaa">會員中心</a></span>
 								<span class="mybb"><a href="blog.html" class="myaa">註冊</a></span>
 								<span class="mybb"><a href="contact.html" class="myaa">登入</a></span>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -195,16 +274,10 @@ padding-right: 17px;
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a
-						href="<%=request.getContextPath()%>/front-end/front_home.jsp"
-						class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front_home.jsp" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="" class="nav-link">Menu</a></li>
-				<li class="nav-item"><a
-					href="<%=request.getContextPath()%>/front-end/front/front_news-11.jsp"
-					class="nav-link">News</a></li>
-				<li class="nav-item"><a
-						href="<%=request.getContextPath()%>/front-end/front/front_ad_new.jsp"
-						class="nav-link">最新活動</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front/front_news-11.jsp" class="nav-link">News</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front/front_ad_new.jsp" class="nav-link">最新活動</a></li>
 					<li class="nav-item"><a href="" class="nav-link">評價總覽</a></li>
 					<li class="nav-item"><a href="" class="nav-link">餐廳資訊</a></li>
 					<li class="nav-item"><a href="" class="nav-link">候位狀況</a></li>
@@ -219,14 +292,11 @@ padding-right: 17px;
 
 
 	<%-- 以下為輪播的地方 --%>
-
-	
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('<%=request.getContextPath()%>/front-end/front/images/33333.jpg');"
+		style="background-image: url('<%=request.getContextPath()%>/front-end/images/carousel_3.jpg');"
 		data-stellar-background-ratio="0.5">
 		<div class="smoke"></div>
 		<div class="overlay"></div>
-
 		<div class="container">
 			<div
 				class="row no-gutters slider-text align-items-end justify-content-center">
@@ -238,26 +308,12 @@ padding-right: 17px;
 							href="<%=request.getContextPath()%>/front-end/front_home.jsp">Home
 								<i class="ion-ios-arrow-forward"></i>
 						</a></span>
+					</p>
 				</div>
 			</div>
 		</div>
-
 	</section>
 	<%-- 輪播的地方結束 --%>
-	
-	
-	
-	<%-- 內容放置區域開始 --%>
-
-	<%-- 內容放置區域結束 --%>
-	
-	
-	
-	<%-- footer 開始 --%>
-
-	<%-- footer 結束 --%>
-	
-	
 	
 	<%-- loader ( 網頁尚在 loading 中時會出現的一個小圈圈 ) 開始 --%>
 	<div id="ftco-loader" class="show fullscreen">
@@ -295,7 +351,20 @@ padding-right: 17px;
 	
 	
 	
+	
 	<%-- script 開始 --%>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#addClass").click(function() {
+				$('#sidebar_secondary').addClass('popup-box-on');
+			});
+
+			$("#removeClass").click(function() {
+				$('#sidebar_secondary').removeClass('popup-box-on');
+			});
+		})
+	</script>
 	<script src="<%=request.getContextPath()%>/front-end/js/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/bootstrap.min.js"></script>
 	<script>
@@ -405,12 +474,6 @@ padding-right: 17px;
 			});			
 			document.getElementById(info_no+"yes").disabled="disabled";
 		}
-		
-		
-		<%-- 客服對話框點擊後會產生的動作...尚未完成...QQ... --%>
-		function popMsg(){
-			console.log("QQ")
-		}
 	</script>
 	<script src="<%=request.getContextPath()%>/front-end/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
@@ -424,6 +487,8 @@ padding-right: 17px;
 	<script src="<%=request.getContextPath()%>/front-end/js/bootstrap-datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/jquery.timepicker.min.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/scrollax.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/google-map.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/main.js"></script>
 	<%-- script 結束 --%>
 </body>
