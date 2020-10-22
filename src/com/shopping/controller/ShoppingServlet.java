@@ -139,6 +139,7 @@ public class ShoppingServlet extends HttpServlet {
 						int qty = mealVO.getMeal_qty() + newMealVO.getMeal_qty();
 						map.put("mealNo", mealVO.getMeal_no());
 						map.put("mealQty", Integer.toString(qty));
+						map.put("mealPrice",Integer.toString(mealVO.getMeal_price()));
 						mealVO.setMeal_qty(qty);
 						mealList.setElementAt(mealVO, i);
 						eleindex = i;
@@ -208,6 +209,7 @@ public class ShoppingServlet extends HttpServlet {
 						int qty = mealVO.getMeal_qty() + newMealVO.getMeal_qty();
 						map.put("mealNo", mealVO.getMeal_no());
 						map.put("mealQty", Integer.toString(qty));
+						map.put("mealPrice",Integer.toString(mealVO.getMeal_price()));
 						mealVO.setMeal_qty(qty);
 						rsvMealList.setElementAt(mealVO, i);
 						eleindex = i;
@@ -278,6 +280,7 @@ public class ShoppingServlet extends HttpServlet {
 						int qty = mealSetVO.getMeal_set_qty() + newMealSetVO.getMeal_set_qty();
 						map.put("mealSetNo", mealSetVO.getMeal_set_no());
 						map.put("mealSetQty", Integer.toString(qty));
+						map.put("mealSetPrice",Integer.toString(mealSetVO.getMeal_set_price()));
 						mealSetVO.setMeal_set_qty(qty);
 						setList.setElementAt(mealSetVO, i);
 						eleindex = i;
@@ -349,6 +352,7 @@ public class ShoppingServlet extends HttpServlet {
 						int qty = mealSetVO.getMeal_set_qty() + newMealSetVO.getMeal_set_qty();
 						map.put("mealSetNo", mealSetVO.getMeal_set_no());
 						map.put("mealSetQty", Integer.toString(qty));
+						map.put("mealSetPrice",Integer.toString(mealSetVO.getMeal_set_price()));
 						mealSetVO.setMeal_set_qty(qty);
 						rsvSetList.setElementAt(mealSetVO, i);
 						eleindex = i;
@@ -400,6 +404,7 @@ public class ShoppingServlet extends HttpServlet {
 					mealVO.setMeal_qty(mealVO.getMeal_qty() - 1);
 					map.put("mealQty", Integer.toString(mealVO.getMeal_qty()));
 					map.put("mealNo", mealVO.getMeal_no());
+					map.put("mealPrice",Integer.toString(mealVO.getMeal_price()));
 					if (mealVO.getMeal_qty() <= 0) {
 						mealList.removeElementAt(i);
 						eleindex = 0;
@@ -434,6 +439,7 @@ public class ShoppingServlet extends HttpServlet {
 					mealVO.setMeal_qty(mealVO.getMeal_qty() - 1);
 					map.put("mealQty", Integer.toString(mealVO.getMeal_qty()));
 					map.put("mealNo", mealVO.getMeal_no());
+					map.put("mealPrice",Integer.toString(mealVO.getMeal_price()));
 					if (mealVO.getMeal_qty() <= 0) {
 						rsvMealList.removeElementAt(i);
 						eleindex = 0;
@@ -467,6 +473,7 @@ public class ShoppingServlet extends HttpServlet {
 					mealSetVO.setMeal_set_qty(mealSetVO.getMeal_set_qty() - 1);
 					map.put("mealSetQty", Integer.toString(mealSetVO.getMeal_set_qty()));
 					map.put("mealSetNo", mealSetVO.getMeal_set_no());
+					map.put("mealSetPrice",Integer.toString(mealSetVO.getMeal_set_price()));
 					if (mealSetVO.getMeal_set_qty() <= 0) {
 						setList.removeElementAt(i);
 						eleindex = 0;
@@ -500,6 +507,7 @@ public class ShoppingServlet extends HttpServlet {
 					mealSetVO.setMeal_set_qty(mealSetVO.getMeal_set_qty() - 1);
 					map.put("mealSetQty", Integer.toString(mealSetVO.getMeal_set_qty()));
 					map.put("mealSetNo", mealSetVO.getMeal_set_no());
+					map.put("mealSetPrice",Integer.toString(mealSetVO.getMeal_set_price()));
 					if (mealSetVO.getMeal_set_qty() <= 0) {
 						rsvSetList.removeElementAt(i);
 						eleindex = 0;

@@ -46,6 +46,10 @@ public class MealSetService {
 	public List<MealSetVO> searchByNoAndName(String keyWord) {
 		return dao.searchByNoAndName(keyWord);
 	};
+	
+	public List<MealSetVO> searchByMealSetSts(Integer mealSetSts) {
+		return dao.searchByMealSetSts(mealSetSts);
+	};
 
 	public List<MealSetVO> getAll() {
 		return dao.getAll();

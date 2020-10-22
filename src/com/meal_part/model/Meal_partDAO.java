@@ -98,13 +98,6 @@ public class Meal_partDAO implements Meal_partDAO_interface {
 						se.printStackTrace(System.err);
 					}
 				}
-				if (con != null) {
-					try {
-						con.close();
-					} catch (Exception e) {
-						e.printStackTrace(System.err);
-					}
-				}
 			}
 		}
 	}

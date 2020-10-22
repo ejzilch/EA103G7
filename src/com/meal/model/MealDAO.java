@@ -34,6 +34,7 @@ public class MealDAO implements MealDAO_interface {
 	private static final String UPDATE = "update meal set meal_name=?,meal_info=?,meal_img=?,meal_price=?,meal_sts=?,cat_no=? where meal_no=?";
 	private static final String SEARCHBYNO ="select * from meal where meal_no like ?";
 	private static final String SEARCHBYNOANDNAME ="select * from meal where meal_name like ? or meal_no like ?";
+	private static final String SEARCHBYMEALSTS ="select * from meal where meal_sts = ?";
 	private static final String GETALL = "select meal_no,meal_name,meal_info,meal_img,meal_price,meal_sts,cat_no from meal order by meal_no";
 	
 	public void insert(MealVO mealVO,List<Meal_partVO> partList) {
@@ -248,6 +249,64 @@ public class MealDAO implements MealDAO_interface {
 		}
 		return list;
 
+	};
+	
+	public List<MealVO> searchByMealSts(Integer mealSts){
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MealVO> list = new ArrayList<MealVO>();
+		MealVO mealVO = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SEARCHBYMEALSTS);
+			pstmt.setInt(1,mealSts);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				mealVO = new MealVO();
+				
+				mealVO.setMeal_no(rs.getString("meal_no"));
+				mealVO.setMeal_name(rs.getString("meal_name"));
+				mealVO.setMeal_info(rs.getString("meal_info"));
+				mealVO.setMeal_img(rs.getBytes("meal_img"));
+				mealVO.setMeal_price(rs.getInt("meal_price"));
+				mealVO.setMeal_sts(rs.getInt("meal_sts"));
+				mealVO.setCat_no(rs.getInt("cat_no"));
+				list.add(mealVO);
+
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+		
+		
 	};
 
 
