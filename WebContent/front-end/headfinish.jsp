@@ -4,6 +4,12 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.front_inform.model.*"%>
 <%@ page import="com.message_record.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+<%
+	MemVO memVO2 = (MemVO) session.getAttribute("memVO2");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +56,7 @@
 	height: 100px;
 	border-top-width: 100px;
 }
+
 .hero-wrap .overlay {
 	position: absolute;
 	top: 0;
@@ -250,9 +257,14 @@
 									</button>
 								</span>
 								<%-- 小鈴鐺圖示結束 --%>
-								<span class="mybb"><a href="menu.html" class="myaa">會員中心</a></span>
-								<span class="mybb"><a href="blog.html" class="myaa">註冊</a></span>
-								<span class="mybb"><a href="contact.html" class="myaa">登入</a></span>
+								<span class="mybb"><a href="<%=request.getContextPath() %>/front-end/mem/login_success_mem.jsp" class="myaa">會員中心</a></span>
+								<span class="mybb" id="sign"><a href="<%=request.getContextPath() %>/front-end/mem/addMem.jsp" class="myaa">註冊</a></span>
+								<span class="mybb" id="login"><a href="<%=request.getContextPath() %>/front-end/mem/login_mem.jsp" class="myaa">登入</a></span>
+								
+									<!--以下尚未完工 -->
+<%-- 								<span class="mybb" id="mem_name" class="unshow"><a href="#" class="myaa">${memVO2.mem.name}</a></span> --%>
+<!-- 								<span class="mybb" id="hello" class="unshow"><a href="#" class="myaa">，您好！</a></span> -->
+<%-- 								<span class="mybb" id="logout" class="unshow"><a href="<%=request.getContextPath() %>/front-end/mem/login_mem.jsp" class="myaa">登出</a></span> --%>
 							</p>
 						</div>
 					</div>
@@ -474,6 +486,18 @@
 			document.getElementById(info_no+"yes").disabled="disabled";
 		}
 	</script>
+	
+	<!--判斷現在是登入或登出的狀態 -->
+	<script>
+		
+		var sign = document.getElementById("sign");
+		var login = document.getElementById("login");
+		var mem_name = document.getElementById("mem_name");
+		var hello = document.getElementById("hello");
+		var logout = document.getElementById("logout");
+		
+	</script>
+	
 	<script src="<%=request.getContextPath()%>/front-end/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/jquery.easing.1.3.js"></script>
@@ -489,6 +513,10 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/google-map.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/main.js"></script>
+	
+	<!--為了顯示地址選單用 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/jquery.twzipcode.min.js"></script>
 	<%-- script 結束 --%>
 </body>
 </html>

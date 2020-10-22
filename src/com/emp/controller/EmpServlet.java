@@ -136,8 +136,8 @@ public class EmpServlet extends HttpServlet {
 				EmpVO empVO = new EmpVO();
 				empVO.setEmp_name(emp_name);
 				
-				String emp_psw = genAuthCode(8);
-				empVO.setEmp_psw(emp_psw);
+//				String emp_psw = genAuthCode(8);
+//				empVO.setEmp_psw(emp_psw);
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -154,7 +154,7 @@ public class EmpServlet extends HttpServlet {
 				
 				String emp_no = empVO2.getEmp_no();
 				
-				empSvc.updateByEmp(emp_psw, emp_name, emp_no);
+//				empSvc.updateByEmp(emp_psw, emp_name, emp_no);
 				
 				String fun_no[] = req.getParameterValues("fun_no[]");
 				
@@ -458,16 +458,9 @@ public class EmpServlet extends HttpServlet {
 				String emp_no = new String(req.getParameter("emp_no").trim());
 				String fun_no[] = req.getParameterValues("fun_no[]");
 				
-				Emp_authVO emp_authVO = new Emp_authVO();
-				
-				for (int i = 0; i < fun_no.length; i++) {
-					emp_authVO.setEmp_no(emp_no);
-					emp_authVO.setFun_no(fun_no[i]);
-				}
-				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("emp_authVO", emp_authVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/emp/update_emp_auth.jsp");
 					failureView.forward(req, res);
@@ -477,23 +470,21 @@ public class EmpServlet extends HttpServlet {
 				/***************************2.開始修改資料*****************************************/
 				Emp_authService emp_authSvc = new Emp_authService();
 				
-//				for (int i = 0; i < fun_no.length; i++) {
-//					emp_authVO = emp_authSvc.addEmp_auth(fun_no[i], emp_no);
-//				}
+				if (fun_no == null) {
+					emp_authSvc.deleteEmp_auth(emp_no);
+				} else {
+					emp_authSvc.deleteEmp_auth(emp_no);
 					
-				List<Emp_authVO> list3 = new Emp_authService().getOneEmp_auth(emp_no);
-				
-				for (int i = 0; i < fun_no.length; i++) {
-					boolean allow = true;
-					for (int j = 0; j < list3.size(); j++) {	
-						if (fun_no[i].equals(list3.get(j).getFun_no())) {
-							allow = false;
-							break;
-						}
+					Emp_authVO emp_authVO = new Emp_authVO();
+					
+					for (int i = 0; i < fun_no.length; i++) {
+						emp_authVO.setEmp_no(emp_no);
+						emp_authVO.setFun_no(fun_no[i]);
 					}
-					if (allow == true) {
+					
+					for (int i = 0; i < fun_no.length; i++) {
 						emp_authVO = emp_authSvc.addEmp_auth(fun_no[i], emp_no);
-					}
+					}	
 				}
 				
 				empVO.setEmp_no(emp_no);
@@ -505,8 +496,7 @@ public class EmpServlet extends HttpServlet {
 				req.setAttribute("emp_authVO", list); // 資料庫update成功後,正確的的empVO物件,存入req
 				
 				req.setAttribute("empVO", empVO);
-				
-				
+						
 				// 為了得到權限名稱
 				List<Fun_authVO> list2 = new ArrayList<>();
 				for (int i = 0; i < list.size(); i++) {
@@ -586,8 +576,9 @@ public class EmpServlet extends HttpServlet {
 				String account = new String(req.getParameter("account"));
 				String password = new String(req.getParameter("password"));
 				
+				LoginHandler lh = new LoginHandler();
 				// 【檢查該帳號 , 密碼是否有效】
-			    if (!allowUser(account, password)) {          //【帳號 , 密碼無效時】
+			    if (!lh.allowUser(account, password)) {          //【帳號 , 密碼無效時】
 			    	errorMsgs.add("您的帳號或密碼無效！請重新輸入！");
 			    	RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/emp/login.jsp");
@@ -637,42 +628,6 @@ public class EmpServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		
-	}
-	
-	protected boolean allowUser(String account, String password) {
-		
-		EmpVO empVO = new EmpVO();
-		EmpService empSvc = new EmpService();
-		
-		empVO = empSvc.getOneEmp(account);
-		
-		if (empVO == null) {
-			return false;
-		}
-				
-		if ((empVO.getEmp_no()).equals(account) && (empVO.getEmp_psw()).equals(password) && empVO.getEmp_sts() == 1) {
-		    return true;
-		} else {
-		    return false;
-		}
-		
-	}
-	
-	public static String genAuthCode(int n) {
-		
-		String data = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-		char[] ch = new char[n]; // 宣告一個字元陣列物件ch 儲存 驗證碼
-		for (int i = 0; i < n; i++) {
-		Random random = new Random(); // 建立一個新的隨機數生成器
-		int index = random.nextInt(data.length()); // 返回[0,data.length)範圍的int值 作用：儲存下標
-		ch[i] = data.charAt(index); // charAt() : 返回指定索引處的 char 值 ==》儲存到字元陣列物件ch裡面
-		}
-		// 將char陣列型別轉換為String型別儲存到result
-		// String result = new String(ch);//方法一：直接使用構造方法 String(char[] value) ：分配一個新的
-		// String，使其表示字元陣列引數中當前包含的字元序列。
-		String result = String.valueOf(ch);// 方法二： String方法 valueOf(char c) ：返回 char 引數的字串表示形式。
-		return result;
 		
 	}
 	

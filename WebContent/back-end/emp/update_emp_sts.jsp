@@ -20,25 +20,36 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<script src="https://kit.fontawesome.com/d6c1e36c40.js" crossorigin="anonymous"></script>
 <title>員工狀態修改</title>
 
 <style>
 	#loc{
-		position: absolute;
+ 		position: relative;
 		top: 150px;
-		left: 300px;
 		z-index: 10;
+		font-size: 150%;
+	}
+	#container{
+	  	margin:0 auto;
+	  	width: 600px;
 	}
 </style>
 
 </head>
 <body>
 	 
-	 <div id="loc">
-	<h4><a href="select_page.jsp">回首頁</a></h4>
-	<h3>員工狀態修改</h3>
+<div class="wrapper">
 	
-	<h3>狀態修改:</h3>
+	<div id="content">
+	 
+	<div id="container">
+	<div id="loc" style="margin-left:175px">
+	<a class="btn btn-primary" href="select_page.jsp" role="button"><i class="fas fa-home" style="font-size:25px"></i></a>
+	<p><p>
+	<h3 style="font-size: 150%;">員工狀態修改</h3>
+	
+	<h5 style="font-size: 120%;">狀態修改:</h5>
 	
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -51,18 +62,18 @@
 	</c:if>
 	
 	<FORM METHOD="post" ACTION="emp.do" name="form1">
-	<table>
+	<table style="font-size: 120%;">
 		<tr>
-			<td>員工編號:</td>
+			<td><i class="fas fa-user"></i>&ensp;員工編號:</td>
 			<td><%=empVO.getEmp_no()%></td>
 		</tr>
 		<tr>
-			<td>員工姓名:</td>
+			<td><i class="fas fa-user"></i>&ensp;員工姓名:</td>
 			<td><%=empVO.getEmp_name()%></td>
 		</tr>
 		
 		<tr>
-			<td>狀態:<font color=red><b>*</b></font></td>
+			<td><i class="fas fa-hand-point-right"></i>&ensp;在職狀態:<font color=red><b>*</b></font></td>
 			<td><select size="1" name="emp_sts">
 				<option value="${(empVO.emp_sts==1) ? 1 : 0}" >${(empVO.emp_sts==1) ? "在職" : "離職"}
 				<option value="${(empVO.emp_sts==1) ? 0 : 1}" >${(empVO.emp_sts==1) ? "離職" : "在職"}
@@ -77,9 +88,12 @@
 	
 	<input name="fun_no[]" type="hidden" value="<%=emp_authService.getOneEmp_auth(emp_no)%>">
 
-	<input type="submit" value="送出修改">
+	<input type="submit" id="ok" class="btn btn-outline-primary" value="送出修改">
 	</FORM>
 	</div>
+	</div>
+	</div>
+</div>
 	
 	<jsp:include page="/back-end/siderbar/siderbar.jsp" />
 

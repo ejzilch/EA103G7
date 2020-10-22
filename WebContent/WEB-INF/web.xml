@@ -19,7 +19,7 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
-	<!-- 會員 -->
+	<!-- 員工 -->
 	<servlet>
 		<servlet-name>EmpServlet</servlet-name>
 		<servlet-class>com.emp.controller.EmpServlet</servlet-class>
@@ -29,6 +29,7 @@
 		<url-pattern>/back-end/emp/emp.do</url-pattern>
 	</servlet-mapping>
 
+	<!-- 會員 -->
 	<servlet>
 		<servlet-name>MemServlet</servlet-name>
 		<servlet-class>com.mem.controller.MemServlet</servlet-class>
@@ -200,4 +201,66 @@
 		<servlet-name>AdServlet</servlet-name>
 		<url-pattern>/ad/ad.do</url-pattern>
 	</servlet-mapping>
+	
+	<!--前台會員登入濾器 -->
+	<filter>
+	  <filter-name>frontLoginFilter</filter-name>
+	  <filter-class>frontfilters.FrontLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>frontLoginFilter</filter-name>
+	  <url-pattern>/front-end/mem/login_success_mem.jsp</url-pattern>
+	  <url-pattern>/front-end/mem/showMemInfo.jsp</url-pattern>
+	  <url-pattern>/front-end/mem/update_mem_info.jsp</url-pattern>
+	  <dispatcher>REQUEST</dispatcher>
+	  <dispatcher>FORWARD</dispatcher>
+	  <dispatcher>INCLUDE</dispatcher>
+	  <dispatcher>ERROR</dispatcher>
+	  <dispatcher>ASYNC</dispatcher>
+	</filter-mapping>  
+	  
+	<!--後台員工登入濾器 -->
+	<filter>
+	  <filter-name>backLoginFilter</filter-name>
+	  <filter-class>backfilters.BackLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>backLoginFilter</filter-name>
+	  <url-pattern>/back-end/emp/addEmp.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/listAllEmp.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/listOneEmp.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/select_page.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/update_emp_auth.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/update_emp_info.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/update_emp_sts.jsp</url-pattern>
+	  <url-pattern>/back-end/mem/*</url-pattern>
+	  <dispatcher>REQUEST</dispatcher>
+	  <dispatcher>FORWARD</dispatcher>
+	  <dispatcher>INCLUDE</dispatcher>
+	  <dispatcher>ERROR</dispatcher>
+	  <dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	  
+	<!--後台員工權限濾器 -->
+	<filter>
+	  <filter-name>authFilter</filter-name>
+	  <filter-class>authfilters.AuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>authFilter</filter-name>
+	  <url-pattern>/back-end/emp/addEmp.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/listAllEmp.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/listOneEmp.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/select_page.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/update_emp_auth.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/update_emp_info.jsp</url-pattern>
+	  <url-pattern>/back-end/emp/update_emp_sts.jsp</url-pattern>
+	  <url-pattern>/back-end/mem/*</url-pattern>
+	  <dispatcher>REQUEST</dispatcher>
+	  <dispatcher>FORWARD</dispatcher>
+	  <dispatcher>INCLUDE</dispatcher>
+	  <dispatcher>ERROR</dispatcher>
+	  <dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	
 </web-app>

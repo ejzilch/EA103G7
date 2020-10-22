@@ -63,6 +63,7 @@
 			<div class="sidebar-header" style="cursor: default;">
 				<h3><span id="no"> ${empVO2.emp_no}</span><br> <span>${empVO2.emp_name}&emsp;您好！</span></h3>
 				<!-- 員工編號 ${empVO.emp_no}  員工姓名 ${empVO.emp_name} -->
+				<hr>
 				
 				<ul class="list-unstyled CTAs">
 					<li style="text-align:center; font-size:30px" id="in">
@@ -80,13 +81,6 @@
 					    </form>
 					</li>
 					
-					<li>
-						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/emp/emp.do" style="margin-bottom: 0px;">
-							<input type="submit" value="員工個資修改">
-							<input type="hidden" name="emp_no" value="${empVO2.emp_no}">
-							<input type="hidden" name="action" value="Update_info">
-						</FORM>
-					</li>
 				</ul>
 				
 			</div>
@@ -99,7 +93,7 @@
 				<li class="active"><a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">主管員工專區</a>
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li class="fun2"><a href="<%=request.getContextPath()%>/back-end/emp/select_page.jsp">員工管理</a></li>
-						<li class="fun2"><a href="#">會員管理</a></li>
+						<li class="fun2"><a href="<%=request.getContextPath()%>/back-end/mem/select_page_mem.jsp">會員管理</a></li>
 						<li class="fun2"><a href="#">廣告管理</a></li>
 						<li class="fun2"><a href="#">最新消息管理</a></li>
 						<li class="fun2"><a href="#">通知管理</a></li>
@@ -115,7 +109,7 @@
 				</li>
 				<li><a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">一般員工專區</a>
 					<ul class="collapse list-unstyled" id="homeSubmenu">
-						<li class="fun2"><a href="<%=request.getContextPath()%>/back-end/front_inform/empCheckInform_New.jsp">查看通知</a></li>
+						<li class="fun2"><a href="#">查看通知</a></li>
 						<li class="fun2"><a href="#">訂單派工</a></li>
 						<li class="fun2"><a href="#">出餐管理</a></li>
 						<li class="fun2"><a href="#">訂餐訂單處理</a></li>
@@ -125,7 +119,16 @@
 					</ul>
 				</li>
 			</ul>
-
+			
+			<div style="text-align:center; font-size:30px" id="info2" class="unshow">
+				<form method="post" action="<%=request.getContextPath()%>/back-end/emp/emp.do">
+					<input type="hidden" name="emp_no" value="${empVO2.emp_no}">
+					<input type="hidden" name="action" value="Update_info"> 
+					<label style="cursor:pointer"><a id="info">員工個資修改</a>
+					<input type="submit" style="display:none"></label>  
+				</form>
+			</div>
+			
 		</nav>
 		
 		<div class="wrapper">
@@ -135,10 +138,28 @@
 
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
-
+					
+					<button type="button" id="sidebarCollapse" class="btn btn-info">
+						<i class="fas fa-align-justify"></i>
+					</button>
 					<div id="titleBig"
 						style="margin: 0 auto; font-size: 30px; font-weight: 800; cursor: default;">吃
 						Pot 吧！員工專區</div>
+					<div id="rwdShow">
+						<button type="button" id="topbarCollapse" class="btn btn-info"
+							data-toggle="collapse" data-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<i class="fas fa-align-justify"></i>
+						</button>
+						<div id="titleSmall"
+							style="padding-left: 10px; font-size: 30px; font-weight: 800; cursor: default;">吃
+							Pot 吧！員工專區</div>	
+					
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						
+					</div>
+					
 				</div>
 			</nav>
 		</div>
@@ -214,13 +235,16 @@
 		// 登入後顯示登出按鈕，登出後顯示登入按鈕
 		var login = document.getElementById("in");
 		var logout = document.getElementById("out");
+		var info = document.getElementById("info2");
 		
 		var no = document.getElementById("no");
 		
 		if (no.innerText !== "") {
 			login.classList.add("unshow");
 			logout.classList.remove("unshow");
+			info.classList.remove("unshow");
 		} else {
+			info.classList.add("unshow");
 			logout.classList.add("unshow");
 			login.classList.remove("unshow");
 		}

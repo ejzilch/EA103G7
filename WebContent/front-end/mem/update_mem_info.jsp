@@ -6,6 +6,9 @@
 	MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>
 
+<%
+	MemVO memVO2 = (MemVO) session.getAttribute("memVO2");
+%>
 
 <html>
 <head>
@@ -36,16 +39,27 @@
 .f20{float:left;margin-left:5px;margin-right:5px;width:calc(100% - 10px)}
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/back-end/js/jquery.twzipcode.min.js"></script>
+<style>
 
+#container{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin:0 auto;
+  width: 600px;
+  background-color:#eee;
+}
+
+</style>
 
 </head>
 <body>
 	
+	<%@ include file="/front-end/headfinish.jsp"%>
 	
 <!-- 	<h4><a href="select_page.jsp">回主頁</a></h4> -->
-	<h3>會員資料修改</h3>
+
+	<div id="container">
+	<h3 style="text-align:center">會員資料修改</h3>
 	
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -58,57 +72,78 @@
 	</c:if>
 	
 	<FORM METHOD="post" ACTION="mem.do" name="form1">
-	<table>
-		<tr>
-			<td>會員姓名:</td>
-			<td><input type="text" name="mem_name" size="45" value="${memVO.mem_name}" required/></td>
-		</tr>
+<!-- 	<table> -->
+<!-- 		<tr> -->
+<!-- 			<td>會員姓名:</td> -->
+<%-- 			<td><input type="text" name="mem_name" size="45" value="${memVO.mem_name}" required/></td> --%>
+<!-- 		</tr> -->
 		
-		<tr>
-			<td>密碼:</td>
-			<td><input type="password" name="mem_psw1" size="45" value="" required/></td>
-		</tr>
-		<tr>
-			<td>密碼確認:</td>
-			<td><input type="password" name="mem_psw2" size="45" value="" required/></td>
-		</tr>
-		<tr>
-			<td>性別:</td>
-			<td><label><input type="radio" name="mem_gen" size="45" value="男" />男</label>
-				<label><input type="radio" name="mem_gen" size="45" value="女" />女</label>
-				<label><input type="radio" name="mem_gen" size="45" value="其他" checked/>其他</label></td>
-		</tr>
-		<tr>
-			<td>生日:</td>
-			<td><input type="date" name="mem_bir" size="45" value="${memVO.mem_bir}" /></td>
-		</tr>
-		<tr>
-			<td>手機:</td>
-			<td><input type="text" name="mem_tel" size="45" value="${memVO.mem_tel}" required/></td>
-		</tr>
-		<tr>
-			<td>地址:</td>
-			<td>
-				<div id="zipcode3">
-				<div class="f3" data-role="county" name="city">
-				</div>
-				<div class="f4" data-role="district" name="town">
-				</div>
-				</div>
-				<input name="address" type="text" class="f13 address form-control" value="${memVO.mem_adrs}">
-			</td>
-		</tr>
-		<tr>
-			<td>e-mail:</td>
-			<td><input type="email" name="mem_mail" size="45" value="${memVO.mem_mail}" required/></td>
-		</tr>
-	</table>
+<!-- 		<tr> -->
+<!-- 			<td>密碼:</td> -->
+<!-- 			<td><input type="password" name="mem_psw1" size="45" value="" required/></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td>密碼確認:</td> -->
+<!-- 			<td><input type="password" name="mem_psw2" size="45" value="" required/></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td>性別:</td> -->
+<!-- 			<td><label><input type="radio" name="mem_gen" size="45" value="男" />男</label> -->
+<!-- 				<label><input type="radio" name="mem_gen" size="45" value="女" />女</label> -->
+<!-- 				<label><input type="radio" name="mem_gen" size="45" value="其他" checked/>其他</label></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td>生日:</td> -->
+<%-- 			<td><input type="date" name="mem_bir" size="45" value="${memVO.mem_bir}" required/></td> --%>
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td>手機:</td> -->
+<%-- 			<td><input type="text" name="mem_tel" size="45" value="${memVO.mem_tel}" required/></td> --%>
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td>地址:</td> -->
+<!-- 			<td> -->
+<!-- 				<div id="zipcode3"> -->
+<!-- 				<div class="f3" data-role="county" name="city"> -->
+<!-- 				</div> -->
+<!-- 				<div class="f4" data-role="district" name="town"> -->
+<!-- 				</div> -->
+<!-- 				</div> -->
+<%-- 				<input name="address" type="text" class="f13 address form-control" value="${memVO.mem_adrs}"> --%>
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td>e-mail:</td> -->
+<%-- 			<td><input type="email" name="mem_mail" size="45" value="${memVO.mem_mail}" required/></td> --%>
+<!-- 		</tr> -->
+<!-- 	</table> -->
 	
+	<ul>
+		<li>會員姓名:<font color=red><b>*</b></font><input type="text" name="mem_name" size="45" value="${memVO2.mem_name}" required/></li>
+		
+		<li>密碼:<font color=red><b>*</b></font>&emsp;&emsp;<input type="password" name="mem_psw1" size="45" value="" required/></li>
+		<li>密碼確認:<font color=red><b>*</b></font><input type="password" name="mem_psw2" size="45" value="" required/></li>
+		<li>性別:&emsp;&emsp;&emsp;<label><input type="radio" name="mem_gen" size="45" value="男" />男</label>
+ 				<label><input type="radio" name="mem_gen" size="45" value="女" />女</label>
+ 				<label><input type="radio" name="mem_gen" size="45" value="其他" />其他</label></li>
+		<li>生日:<font color=red><b>*</b></font>&emsp;&emsp;&ensp;<input type="date" name="mem_bir" size="45" value="${memVO2.mem_bir}" required/></li>
+		<li>手機:<font color=red><b>*</b></font>&emsp;&emsp;<input type="text" name="mem_tel" size="45" value="${memVO2.mem_tel}" required/></li>
+		<li>e-mail:<font color=red><b>*</b></font>&ensp;<input type="email" name="mem_mail" size="45" value="${memVO2.mem_mail}" required/></li>
+		<li>地址:
+			<div id="zipcode3" style="width: 800px">
+ 			<div class="f3" data-role="county" name="city"></div>
+			<div class="f4" data-role="district" name="town"></div>
+			</div>
+			<br><br>
+			<input name="address" type="text" size="50px" value="${memVO2.mem_adrs}">
+		</li>
+	</ul>
 	
-	<input type="submit" value="送出修改">
-	<input type="hidden" name="mem_no" value="${memVO.mem_no}">
+	<input type="submit" value="送出修改" style="margin-left:250px">
+	<input type="hidden" name="mem_no" value="${memVO2.mem_no}">
 	<input type="hidden" name="action" value="update_i">
 	</FORM>
+	</div>
 	
 <script>
 	$("#zipcode3").twzipcode({
@@ -123,5 +158,29 @@
 	$("#twzipcode").twzipcode();
 </script>
 	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/js/jquery.twzipcode.min.js"></script>	
+	
+	<jsp:include page="/front-end/front/footer.jsp" />
+
+
+
+<span id="gen">${memVO2.mem_gen}</span>
+<script>
+	
+	// 根據資料庫預設性別
+	var gen = document.getElementById("gen");
+	
+	var mem_gen = document.getElementsByName("mem_gen");
+	
+	for (let i = 0; i < mem_gen.length; i++) {
+		if (mem_gen[i].value === gen.innerText) {
+			mem_gen[i].checked = true;
+			break;
+		}
+	}
+	
+</script>
+
 </body>
 </html>

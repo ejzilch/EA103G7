@@ -20,27 +20,42 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<script src="https://kit.fontawesome.com/d6c1e36c40.js" crossorigin="anonymous"></script>
 <title>員工權限修改</title>
 
 <style>
 
-#loc{
-		position: absolute;
+	#loc{
+ 		position: relative;
 		top: 150px;
-		left: 300px;
 		z-index: 10;
+		font-size: 150%;
 	}
-
+	#container{
+	  	margin:0 auto;
+	  	width: 1200px;
+	}
+	
+	td {
+		width: 300px;
+	}
+	
 </style>
 
 </head>
 <body>
 
-	<div id="loc">
-	<h4><a href="select_page.jsp">回首頁</a></h4>
-	<h3>員工權限修改</h3>
+<div class="wrapper">
+	
+	<div id="content">
 
-	<h3>權限修改:</h3>
+	<div id="container">
+	<div id="loc">
+	<a class="btn btn-primary" href="select_page.jsp" role="button"><i class="fas fa-home" style="font-size:25px"></i></a>
+	<p><p>
+	<h3 style="font-size: 120%;">員工權限修改</h3>
+
+	<h5 style="font-size: 100%;">權限修改:</h5>
 	
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -53,31 +68,53 @@
 	</c:if>
 
 	<FORM METHOD="post" ACTION="emp.do" name="form1">
-	<table>
+	<table style="font-size: 120%;">
 		<tr>
-			<td>員工編號:</td>
+			<td><i class="fas fa-user"></i>&ensp;員工編號:</td>
 			<td><%=empVO.getEmp_no()%></td>
 		</tr>
 		<tr>
-			<td>員工姓名:</td>
+			<td><i class="fas fa-user"></i>&ensp;員工姓名:</td>
 			<td><%=empVO.getEmp_name()%></td>
 		</tr>
 	</table>
-			
+		<p><p>
+		
 		<jsp:useBean id="fun_authSvc" scope="page" class="com.fun_auth.model.Fun_authService" />
 		
-			權限新增:<font color=red><b>*</b></font><br>
-			
-			<c:forEach var="fun_authVO" items="${fun_authSvc.all}">
-				<span class="textcolor"><label><input class="check1" name="fun_no[]" type="checkbox" value="${fun_authVO.fun_no}">${fun_authVO.fun_name}</label></span>
-			</c:forEach>		
-			
-	<br>
+		權限新增:<font color=red><b>*</b></font><p><p>
+	<table style="font-size: 80%;">
+		<tr>
+			<c:forEach var="fun_authVO" items="${fun_authSvc.all}" begin="0" end="4">
+				<td><span class="textcolor"><label><input class="check1" name="fun_no[]" type="checkbox" value="${fun_authVO.fun_no}">${fun_authVO.fun_name}&emsp;</label></span></td>
+			</c:forEach>
+		</tr>
+		<tr>
+			<c:forEach var="fun_authVO" items="${fun_authSvc.all}" begin="5" end="9">
+				<td><span class="textcolor"><label><input class="check1" name="fun_no[]" type="checkbox" value="${fun_authVO.fun_no}">${fun_authVO.fun_name}&emsp;</label></span></td>
+			</c:forEach>
+		</tr>
+		<tr>
+			<c:forEach var="fun_authVO" items="${fun_authSvc.all}" begin="10" end="14">
+				<td><span class="textcolor"><label><input class="check1" name="fun_no[]" type="checkbox" value="${fun_authVO.fun_no}">${fun_authVO.fun_name}&emsp;</label></span></td>
+			</c:forEach>
+		</tr>
+		<tr>
+			<c:forEach var="fun_authVO" items="${fun_authSvc.all}" begin="15" end="19">
+				<td><span class="textcolor"><label><input class="check1" name="fun_no[]" type="checkbox" value="${fun_authVO.fun_no}">${fun_authVO.fun_name}&emsp;</label></span></td>
+			</c:forEach>
+		</tr>
+		<tr>
+			<c:forEach var="fun_authVO" items="${fun_authSvc.all}" begin="20" end="24">
+				<td><span class="textcolor"><label><input class="check1" name="fun_no[]" type="checkbox" value="${fun_authVO.fun_no}">${fun_authVO.fun_name}&emsp;</label></span></td>
+			</c:forEach>
+		</tr>
+	</table>		
 	<input type="hidden" name="action" value="update_a">
 	<input type="hidden" name="emp_no" value="<%=empVO.getEmp_no()%>">
 	<input type="hidden" name="emp_name" value="<%=empVO.getEmp_name()%>">
 	<input type="hidden" name="emp_sts" value="<%=empVO.getEmp_sts()%>">
-	<input type="submit" id="ok" value="送出修改">
+	<input type="submit" id="ok" class="btn btn-outline-primary" value="送出新增">
 	
 	<div id="fun" style="display:none">
 		<c:forEach var="emp_authVO" items="${emp_authVO}">
@@ -86,19 +123,21 @@
 	</div>
 	</FORM>
 	</div>
+	</div>
+	</div>
+</div>
 
 	<jsp:include page="/back-end/siderbar/siderbar.jsp" />
 	
 <script>
 	
+	// 使被選過的權限無法再選
 	var check1 = document.getElementsByClassName("check1");
 	var arr1 = [];
 	for (let i = 0; i < check1.length; i++) {
 		var x = check1[i].value;
 		arr1.push(x);
 	}
-	
-	console.log(arr1);
 	
 	var check2 = document.getElementsByClassName("check2");
 	var arr2 = [];
@@ -107,34 +146,33 @@
 		arr2.push(y);
 	}
 	
-	console.log(arr2);
-	
 	var textcolor = document.getElementsByClassName("textcolor");
 	
 	for (let i = 0; i < arr1.length; i++) {
 		for (let j = 0; j < arr2.length; j++) {
 			if (arr1[i] === arr2[j]) {
-				check1[i].disabled = true;
+				check1[i].checked = true;
 				textcolor[i].style.color = 'red';
 			}
 		}
 	}
 	
-	var btn = document.getElementById("ok");
+	// 在沒勾選任何權限的情況下無法送出
+// 	var btn = document.getElementById("ok");
 	
-	btn.onclick = function(e){
-	    var obj = document.getElementsByName("fun_no[]");
-	    var selected = [];
-	    for (var i = 0; i < obj.length; i++) {
-	        if (obj[i].checked) {
-	            selected.push(obj[i].value);
-	        }
-	    }
-	    if(selected.length === 0) {
-	      	alert('請至少勾選一項！');
-	      	e.preventDefault();
-	    }
-	};
+// 	btn.onclick = function(e){
+// 	    var obj = document.getElementsByName("fun_no[]");
+// 	    var selected = [];
+// 	    for (var i = 0; i < obj.length; i++) {
+// 	        if (obj[i].checked) {
+// 	            selected.push(obj[i].value);
+// 	        }
+// 	    }
+// 	    if(selected.length === 0) {
+// 	      	alert('請至少勾選一項權限！');
+// 	      	e.preventDefault();
+// 	    }
+// 	};
 	      
 </script>
 

@@ -29,6 +29,10 @@ public class MemDAO implements MemDAO_interface {
 			"UPDATE MEMBER_TABLE SET MEM_NAME = ?, MEM_PSW = ?, MEM_GEN = ?, MEM_BIR = ?, MEM_TEL = ?, MEM_ADRS = ?, MEM_MAIL = ? WHERE MEM_NO = ?";
 	private static final String UPDATE_BY_EMP = 
 			"UPDATE MEMBER_TABLE SET MEM_BNS = ?, MEM_OD_M = ?, MEM_OD_R = ?, MEM_REVIEW = ?, MEM_REPO = ?, MEM_STS = ? WHERE MEM_NO = ?";
+	private static final String FORGET_PSW = 
+			"UPDATE MEMBER_TABLE SET MEM_PSW = ? WHERE MEM_MAIL = ?";
+	private static final String LOGIN_IN = 
+			"SELECT MEM_NO, MEM_ACT, MEM_PSW, MEM_STS FROM MEMBER_TABLE WHERE MEM_ACT = ?";
 	private static final String GET_ONE_MEM = 
 			"SELECT MEM_NO, MEM_NAME, MEM_ACT, MEM_PSW, MEM_GEN, to_char(MEM_BIR,'yyyy-mm-dd') MEM_BIR, MEM_TEL, MEM_ADRS, MEM_MAIL, MEM_BNS,\r\n" + 
 			"    MEM_OD_M, MEM_OD_R, MEM_REVIEW, MEM_REPO, MEM_STS FROM MEMBER_TABLE WHERE MEM_NO = ?";
@@ -37,15 +41,16 @@ public class MemDAO implements MemDAO_interface {
 			"    MEM_OD_M, MEM_OD_R, MEM_REVIEW, MEM_REPO, MEM_STS FROM MEMBER_TABLE ORDER BY MEM_NO";
 	
 	@Override
-	public void insert(MemVO memVO) {
+	public Object insert(MemVO memVO) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		String[] generatedColumns = {"mem_no"};
 		
 		try {
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_MEM);
+			pstmt = con.prepareStatement(INSERT_MEM, generatedColumns);
 			
 			pstmt.setString(1, memVO.getMem_name());
 			pstmt.setString(2, memVO.getMem_act());
@@ -57,6 +62,12 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(8, memVO.getMem_mail());
 			
 			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			rs.next();
+			String mem_no = rs.getString(1);
+			
+			memVO.setMem_no(mem_no);
 			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
@@ -77,7 +88,7 @@ public class MemDAO implements MemDAO_interface {
 				}
 			}
 		}
-		
+		return memVO;
 	}
 	
 	@Override
@@ -166,6 +177,99 @@ public class MemDAO implements MemDAO_interface {
 		}
 		
 	}
+	
+	@Override
+	public void forgetPsw(MemVO memVO) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FORGET_PSW);
+			
+			pstmt.setString(1, memVO.getMem_psw());
+			pstmt.setString(2, memVO.getMem_mail());
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public MemVO login(String mem_act) {
+		
+		MemVO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(LOGIN_IN);
+			
+			pstmt.setString(1, mem_act);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				memVO = new MemVO();
+				memVO.setMem_no(rs.getString("MEM_NO"));
+				memVO.setMem_act(rs.getString("MEM_ACT"));
+				memVO.setMem_psw(rs.getString("MEM_PSW"));
+				memVO.setMem_sts(rs.getInt("MEM_STS"));
+				
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return memVO;
+	}
+	
 	
 	@Override
 	public MemVO findByMem_no(String mem_no) {
@@ -301,5 +405,5 @@ public class MemDAO implements MemDAO_interface {
 		
 		return list;
 	}
-	
+
 }

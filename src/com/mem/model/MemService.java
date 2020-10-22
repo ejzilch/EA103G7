@@ -64,6 +64,21 @@ public class MemService {
 		return memVO;
 	}
 	
+	public MemVO forgetPsw(String mem_psw, String mem_mail) {
+		
+		MemVO memVO = new MemVO();
+		
+		memVO.setMem_psw(mem_psw);
+		memVO.setMem_mail(mem_mail);
+		dao.forgetPsw(memVO);
+		
+		return memVO;
+	}
+	
+	public MemVO login(String mem_act) {
+		return dao.login(mem_act);
+	}
+	
 	public MemVO getOneMem(String mem_no) {
 		return dao.findByMem_no(mem_no);
 	}
