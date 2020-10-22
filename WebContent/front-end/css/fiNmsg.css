@@ -24,7 +24,7 @@ aside {
 	background-origin: padding-box;
 	background-position: center top;
 	background-repeat: repeat;
-	border: 1px solid #304445;
+	border: 0px;
 	bottom: 0;
 	display: none;
 	height: 466px;
@@ -49,10 +49,9 @@ aside {
 
 .popup-head {
 	background: #304445 none repeat scroll 0 0 !important;
-	border-bottom: 3px solid #ccc;
 	color: #fff;
 	display: table;
-	width: 100%;
+	width: 105.5%;
 	padding: 8px;
 }
 
@@ -197,6 +196,15 @@ img {
 	vertical-align: middle;
 }
 
+#chatClose{
+	margin-bottom: 5px;
+}
+
+#sendMsg{
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
 .chat_box .chat_message_wrapper ul.chat_message>li+li {
 	margin-top: 4px;
 }
@@ -238,7 +246,8 @@ img {
 	overflow: hidden;
 	padding: 10px;
 	position: absolute;
-	width: 100%;
+	width: 105.5%;
+	background: #e3e3e3;
 }
 
 .gurdeep-chat-box {
