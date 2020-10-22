@@ -49,6 +49,10 @@ public class MealService {
 	public List<MealVO> searchByNoAndName(String keyWord) {
 		return dao.searchByNoAndName(keyWord);
 	};
+	
+	public List<MealVO> searchByMealSts(Integer mealSts) {
+		return dao.searchByMealSts(mealSts);
+	};
 
 
 	public List<MealVO> getAll(){

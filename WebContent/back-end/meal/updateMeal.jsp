@@ -84,7 +84,7 @@ table#table-1 {
 	<tr>
 		<td>À\ÂI¦WºÙ:</td>
 		<td><input type="TEXT" name="meal_name" size="45" value="<%= mealVO.getMeal_name()%>"/></td>
-<%-- 		<td><%= errormsgs.get("mealName")%></td> --%>
+<%-- 		${not empty errormsgs.get("mealName")!=null?errormsgs.get("mealName"):''} --%>
 	</tr>
 		
 <%-- 		<c:out value="${errormsgs['mealName']}"/> --%>

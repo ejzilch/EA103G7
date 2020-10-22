@@ -10,6 +10,7 @@ public interface MealSetDAO_interface {
 	public void update(MealSetVO mealSetVO,List<MealSetConVO>conList);
 	public MealSetVO searchByNo(String keyWord);
 	public List<MealSetVO> searchByNoAndName(String keyWord);
+	public List<MealSetVO> searchByMealSetSts(Integer mealSetSts);
 	public List<MealSetVO> getAll();
 	
 }

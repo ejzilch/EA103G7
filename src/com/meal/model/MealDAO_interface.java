@@ -11,6 +11,7 @@ public interface MealDAO_interface {
      public List<MealVO> searchByNoAndName(String keyWord);
 //     public MealVO findByMealNo(String mealNo);
 //     public MealVO findByMealName(String mealName);
+     public List<MealVO> searchByMealSts(Integer mealSts);
      public List<MealVO> getAll();
 	
 }

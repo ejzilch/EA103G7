@@ -7,7 +7,7 @@
 
 <%
      MealService mealSrv = new MealService(); 
-     List<MealVO> list = mealSrv.getAll(); 
+     List<MealVO> list = mealSrv.searchByMealSts(1); 
      request.setAttribute("list",list);
      String mem_no = "MEM0001";				//模擬假資料
      session.setAttribute("mem_no",mem_no);	//模擬假資料
@@ -43,13 +43,16 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>會員所有訂餐訂單</title>
  <style>
+ body{
+/*  background-color:black; */
+ }
  
   div.container {
   
 /*       border: 1px solid red; */
 /*       width: 100%; */
 /*             height: 100%; */
-/*             background-color: rgba(255, 255, 255, 0.9); */
+/*              background-color: rgba(255, 255, 255, 0.9); */
     }
 
     div.container div.col {
@@ -65,7 +68,7 @@
 	text-align: right;
     }
     #card-text h4{
-    color: orange;
+    color: #dea554;
     font-weight: bolder;
     font-size: 30px;
     }
@@ -78,7 +81,8 @@
 
     #top {
       height: 100px;
-      border: 3px solid green;
+/*       border: 3px solid green; */
+	margin-bottom: 50px;
     }
     #top div.col-3{
       text-align: center;
@@ -89,7 +93,7 @@
       text-decoration:none;
   width:96px; 
   height:48px; 
- background-color:orange;
+ background-color:#dea554;
   color:#fff;
   border-radius:15px;
   border:3px solid white;
@@ -103,8 +107,8 @@
       text-decoration:none;
   width:96px; 
   height:48px; 
- background-color:orange;
-  color:yellow;
+ background-color:#ffbc5e;
+  color:#fff;
   border-radius:15px;
   border:3px solid black;
   cursor:pointer;
@@ -117,7 +121,7 @@
       text-align: center;
   width:96px; 
   height:30px; 
- background-color:orange;
+ background-color:#dea554;
   color:#fff;
   border-radius:10px;
   border:3px solid white;
@@ -126,7 +130,13 @@
  	font-weight: bolder;
  	padding:1px;
     }
- img{
+    
+    #menu button:hover{
+ background-color:#ffbc5e;
+  color:#fff;
+  cursor:pointer;
+    }
+ #card-img img{
  	width:285px;
 	height:191px; 
 /*   	width:200px; */
@@ -136,7 +146,7 @@
  text-align:center;
   width:24px; 
   height:24px; 
- background-color:orange;
+ background-color:#dea554;
   color:#fff;
   border-radius:50%;
   border:1px solid black;
@@ -146,6 +156,12 @@
  	padding:1px;
  	
  }
+ 
+#cartJSP button:hover{
+ background-color:#ffbc5e;
+ 	
+ }
+ 
  #qty{
  width:100px;
  }
@@ -163,13 +179,16 @@
  color:red;
  font-size:16px;
  }
+ .card-margin{
+   margin: 25px auto;  
+ }
  
   </style>
  </head>
 
 <body>
 
-<jsp:include page="/front-end/head.jsp" flush="true"/>
+<jsp:include page="/front-end/headfinish.jsp" flush="true"/>
   <div class="container">
   
     <div id="top" class="row align-items-center" >
@@ -183,7 +202,8 @@
     <div id="menu" class="row justify-content-start">
     
     <c:forEach var="mealVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-      <div class="col-6">
+      
+      <div class="col-6 card-margin">
       <div class="row align-items-center">
       <div id="card-text"class="col-4">
       <h4>${mealVO.meal_name}</h4>
@@ -230,7 +250,7 @@
    <c:forEach var="mealVO" items="${mealList}">
    <div class="row content ${mealVO.meal_no}">
     <div class="col">${mealVO.meal_name}</div>
-    <div class="col">${mealVO.meal_price}</div>
+    <div class="col">${mealVO.meal_price}&nbsp;元</div>
     <div class="col">
     <button class="decreaseBtn">-</button>
     <input type="hidden" value="${mealVO.meal_no}"/>
@@ -238,7 +258,7 @@
     <button class="increaseBtn">+</button>
     <input type="hidden" value="${mealVO.meal_no}"/>
     </div>
-    <div class="col">${mealVO.meal_price * mealVO.meal_qty}</div>
+    <div class="col">${mealVO.meal_price * mealVO.meal_qty}&nbsp;元</div>
   </div>
   </c:forEach>
 </c:if>
@@ -247,7 +267,7 @@
    <c:forEach var="mealSetVO" items="${setList}">
    <div class="row content ${mealSetVO.meal_set_no}">
     <div class="col">${mealSetVO.meal_set_name}</div>
-    <div class="col">${mealSetVO.meal_set_price}</div>
+    <div class="col">${mealSetVO.meal_set_price}&nbsp;元</div>
     <div class="col">
     <button class="decreaseBtn2">-</button>
     <input type="hidden" value="${mealSetVO.meal_set_no}"/>
@@ -255,7 +275,7 @@
     <button class="increaseBtn2">+</button>
     <input type="hidden" value="${mealSetVO.meal_set_no}"/>
     </div>
-    <div class="col">${mealSetVO.meal_set_price * mealSetVO.meal_set_qty}</div>
+    <div class="col">${mealSetVO.meal_set_price * mealSetVO.meal_set_qty}&nbsp;元</div>
   </div>
   </c:forEach>
 </c:if>
@@ -267,7 +287,7 @@
    <c:forEach var="mealVO" items="${rsvMealList}">
    <div class="row content ${mealVO.meal_no}">
     <div class="col">${mealVO.meal_name}</div>
-    <div class="col">${mealVO.meal_price}</div>
+    <div class="col">${mealVO.meal_price}&nbsp;元</div>
     <div class="col">
     <button class="decreaseRsvBtn">-</button>
     <input type="hidden" value="${mealVO.meal_no}"/>
@@ -275,7 +295,7 @@
     <button class="increaseRsvBtn">+</button>
     <input type="hidden" value="${mealVO.meal_no}"/>
     </div>
-    <div class="col">${mealVO.meal_price * mealVO.meal_qty}</div>
+    <div class="col">${mealVO.meal_price * mealVO.meal_qty}&nbsp;元</div>
   </div>
   </c:forEach>
 </c:if>
@@ -284,7 +304,7 @@
    <c:forEach var="mealSetVO" items="${rsvSetList}">
    <div class="row content ${mealSetVO.meal_set_no}">
     <div class="col">${mealSetVO.meal_set_name}</div>
-    <div class="col">${mealSetVO.meal_set_price}</div>
+    <div class="col">${mealSetVO.meal_set_price}&nbsp;元</div>
     <div class="col">
     <button class="decreaseRsvBtn2">-</button>
     <input type="hidden" value="${mealSetVO.meal_set_no}"/>
@@ -292,7 +312,7 @@
     <button class="increaseRsvBtn2">+</button>
     <input type="hidden" value="${mealSetVO.meal_set_no}"/>
     </div>
-    <div class="col">${mealSetVO.meal_set_price * mealSetVO.meal_set_qty}</div>
+    <div class="col">${mealSetVO.meal_set_price * mealSetVO.meal_set_qty}&nbsp;元</div>
   </div>
   </c:forEach>
 </c:if>
@@ -397,7 +417,7 @@
                          row.classList.add("row", "content",data.mealNo);
                          row.innerHTML =
                              '<div class="col">' + data.mealName + '</div>' +
-                             '<div class="col">' + data.mealPrice + '</div>' +
+                             '<div class="col">' + data.mealPrice + '&nbsp;元</div>' +
                              '<div class="col">'+
                              '<button class="decreaseBtn">-</button>' +
                              '<input type="hidden" value="' + data.mealNo + '"/>' +
@@ -421,7 +441,10 @@
                          
                      }else{
                          let mealNo = data.mealNo;
+                         let mealQty = parseInt(data.mealQty);
+                         let mealPrice = parseInt(data.mealPrice);
                     	 $("."+mealNo).find("span").text(" "+data.mealQty+" ");
+                    	 $("."+mealNo).find("div:last-child").text(mealQty*mealPrice+" 元");
                      }
                  }
              })
@@ -455,7 +478,7 @@
                          row.classList.add("row", "content",data.mealNo);
                          row.innerHTML =
                              '<div class="col">' + data.mealName + '</div>' +
-                             '<div class="col">' + data.mealPrice + '</div>' +
+                             '<div class="col">' + data.mealPrice + '&nbsp;元</div>' +
                              '<div class="col">'+
                              '<button class="decreaseRsvBtn">-</button>' +
                              '<input type="hidden" value="' + data.mealNo + '"/>' +
@@ -479,7 +502,10 @@
                          
                      }else{
                          let mealNo = data.mealNo;
+                         let mealQty = parseInt(data.mealQty);
+                         let mealPrice = parseInt(data.mealPrice);
                     	 $("."+mealNo).find("span").text(" "+data.mealQty+" ");
+                    	 $("."+mealNo).find("div:last-child").text(mealQty*mealPrice+" 元");
                      }
                  }
              })
@@ -505,7 +531,10 @@
                  success: function (data) {
 					var eleindex = parseInt(data.eleindex);
 					let mealNo = data.mealNo;
+					let mealQty = parseInt(data.mealQty);
+                    let mealPrice = parseInt(data.mealPrice);
                      $("."+mealNo).find("span").text(" "+data.mealQty+" ");
+                     $("."+mealNo).find("div:last-child").text(mealQty*mealPrice+" 元");
 
                  }
              });
@@ -526,11 +555,14 @@
                  dataType: "JSON",
                  success: function (data) {
 					 let mealNo = data.mealNo;
+					 let mealQty = parseInt(data.mealQty);
+                     let mealPrice = parseInt(data.mealPrice);
                 	 var eleindex = parseInt(data.eleindex);
                 	 if (eleindex === 0) {
                          $("."+mealNo).remove();
                      }else{
                      $("."+mealNo).find("span").text(" "+data.mealQty+" ");
+                     $("."+mealNo).find("div:last-child").text(mealQty*mealPrice+" 元");
                      }
                  }
              });
@@ -551,9 +583,12 @@
                  },
                  dataType: "JSON",
                  success: function (data) {
+                	 let mealSetQty = parseInt(data.mealSetQty);
+                     let mealSetPrice = parseInt(data.mealSetPrice);
 					var eleindex = parseInt(data.eleindex);
 					let mealSetNo = data.mealSetNo;
                      $("."+mealSetNo).find("span").text(" "+data.mealSetQty+" ");
+                     $("."+mealSetNo).find("div:last-child").text(mealSetQty*mealSetPrice+" 元");
 
                  }
              });
@@ -573,11 +608,14 @@
                  dataType: "JSON",
                  success: function (data) {
 					 let mealSetNo = data.mealSetNo;
+					 let mealSetQty = parseInt(data.mealSetQty);
+                     let mealSetPrice = parseInt(data.mealSetPrice);
                 	 var eleindex = parseInt(data.eleindex);
                 	 if (eleindex === 0) {
                          $("."+mealSetNo).remove();
                      }else{
                      $("."+mealSetNo).find("span").text(" "+data.mealSetQty+" ");
+                     $("."+mealSetNo).find("div:last-child").text(mealSetQty*mealSetPrice+" 元");
                      }
                  }
              });
@@ -600,7 +638,10 @@
                  success: function (data) {
 					var eleindex = parseInt(data.eleindex);
 					let mealNo = data.mealNo;
+					let mealQty = parseInt(data.mealQty);
+                    let mealPrice = parseInt(data.mealPrice);
                      $("."+mealNo).find("span").text(" "+data.mealQty+" ");
+                     $("."+mealNo).find("div:last-child").text(mealQty*mealPrice+" 元");
 
                  }
              });
@@ -620,11 +661,14 @@
                  dataType: "JSON",
                  success: function (data) {
 					 let mealNo = data.mealNo;
+					 let mealQty = parseInt(data.mealQty);
+                     let mealPrice = parseInt(data.mealPrice);
                 	 var eleindex = parseInt(data.eleindex);
                 	 if (eleindex === 0) {
                          $("."+mealNo).remove();
                      }else{
                      $("."+mealNo).find("span").text(" "+data.mealQty+" ");
+                     $("."+mealNo).find("div:last-child").text(mealQty*mealPrice+" 元");
                      }
                  }
              });
@@ -645,9 +689,12 @@
                  },
                  dataType: "JSON",
                  success: function (data) {
+                	 let mealSetQty = parseInt(data.mealSetQty);
+                     let mealSetPrice = parseInt(data.mealSetPrice);
 					var eleindex = parseInt(data.eleindex);
 					let mealSetNo = data.mealSetNo;
                      $("."+mealSetNo).find("span").text(" "+data.mealSetQty+" ");
+                     $("."+mealSetNo).find("div:last-child").text(mealSetQty*mealSetPrice+" 元");
 
                  }
              });
@@ -666,12 +713,15 @@
                  },
                  dataType: "JSON",
                  success: function (data) {
+                	 let mealSetQty = parseInt(data.mealSetQty);
+                     let mealSetPrice = parseInt(data.mealSetPrice);
 					 let mealSetNo = data.mealSetNo;
                 	 var eleindex = parseInt(data.eleindex);
                 	 if (eleindex === 0) {
                          $("."+mealSetNo).remove();
                      }else{
                      $("."+mealSetNo).find("span").text(" "+data.mealSetQty+" ");
+                     $("."+mealSetNo).find("div:last-child").text(mealSetQty*mealSetPrice+" 元");
                      }
                  }
              });
@@ -693,9 +743,9 @@
   <script src="<%= request.getContextPath() %>/front-end/js/bootstrap.min.js"></script>
   
   <!-- loader -->
-        <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+<!--         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"> -->
+<%--                 <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /> --%>
+<%--                 <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div> --%>
         <script src="<%=request.getContextPath()%>/front-end/js/jquery.min.js"></script>
         <script src="<%=request.getContextPath()%>/front-end/js/jquery-migrate-3.0.1.min.js"></script>
         <script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>

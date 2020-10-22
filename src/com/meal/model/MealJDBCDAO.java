@@ -26,6 +26,7 @@ public class MealJDBCDAO implements MealDAO_interface {
 	private static final String UPDATE = "update meal set meal_name=?,meal_info=?,meal_img=?,meal_price=?,meal_sts=?,cat_no=? where meal_no=?";
 	private static final String SEARCHBYNO ="select * from meal where meal_no like ?";
 	private static final String SEARCHBYNOANDNAME ="select * from meal where meal_name like ? or meal_no like ?";
+	private static final String SEARCHBYMEALSTS ="select * from meal where meal_sts = ?";
 	private static final String GETALL = "select meal_no,meal_name,meal_info,meal_img,meal_price,meal_sts,cat_no from meal order by meal_no";
 
 	public void insert(MealVO mealVO,List<Meal_partVO> partList) {
@@ -258,6 +259,65 @@ public class MealJDBCDAO implements MealDAO_interface {
 
 	};
 	
+public List<MealVO> searchByMealSts(Integer mealSts){
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MealVO> list = new ArrayList<MealVO>();
+		MealVO mealVO = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SEARCHBYMEALSTS);
+			pstmt.setInt(1,mealSts);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				mealVO = new MealVO();
+				
+				mealVO.setMeal_no(rs.getString("meal_no"));
+				mealVO.setMeal_name(rs.getString("meal_name"));
+				mealVO.setMeal_info(rs.getString("meal_info"));
+				mealVO.setMeal_img(rs.getBytes("meal_img"));
+				mealVO.setMeal_price(rs.getInt("meal_price"));
+				mealVO.setMeal_sts(rs.getInt("meal_sts"));
+				mealVO.setCat_no(rs.getInt("cat_no"));
+				list.add(mealVO);
+
+			}
+		} catch (SQLException | ClassNotFoundException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+		
+		
+	};
+	
 
 	public List<MealVO> getAll() {
 
@@ -322,31 +382,31 @@ public class MealJDBCDAO implements MealDAO_interface {
 		
 		/*-------------------insert����-------------------*/
 		MealJDBCDAO dao = new MealJDBCDAO();
-		
-		MealVO mealVO = new MealVO();
-		
-		mealVO.setMeal_name("香蕉火鍋");
-		mealVO.setMeal_info("跟中央的食物一樣難吃");
-		mealVO.setMeal_img(getPicByteArray());
-		mealVO.setMeal_price(888);
-		mealVO.setMeal_sts(0);
-		mealVO.setCat_no(10);
-		
-		Meal_partVO partVO = new Meal_partVO();
-		partVO.setFd_no("FD0001");
-		// 馮改1020
-		partVO.setFd_gw(new Double(500));
-		
-		Meal_partVO partVO2 = new Meal_partVO();
-		partVO2.setFd_no("FD0002");
-		// 馮改1020
-		partVO2.setFd_gw(new Double(900));
-		
-		List<Meal_partVO> partList = new ArrayList<>();
-		partList.add(partVO);
-		partList.add(partVO2);
-		
-		dao.insert(mealVO,partList);
+//		
+//		MealVO mealVO = new MealVO();
+//		
+//		mealVO.setMeal_name("香蕉火鍋");
+//		mealVO.setMeal_info("跟中央的食物一樣難吃");
+//		mealVO.setMeal_img(getPicByteArray());
+//		mealVO.setMeal_price(888);
+//		mealVO.setMeal_sts(0);
+//		mealVO.setCat_no(10);
+//		
+//		Meal_partVO partVO = new Meal_partVO();
+//		partVO.setFd_no("FD0001");
+//		// 馮改1020
+//		partVO.setFd_gw(new Double(500));
+//		
+//		Meal_partVO partVO2 = new Meal_partVO();
+//		partVO2.setFd_no("FD0002");
+//		// 馮改1020
+//		partVO2.setFd_gw(new Double(900));
+//		
+//		List<Meal_partVO> partList = new ArrayList<>();
+//		partList.add(partVO);
+//		partList.add(partVO2);
+//		
+//		dao.insert(mealVO,partList);
 		
 		/*-------------------update����-------------------*/
 		
@@ -377,6 +437,13 @@ public class MealJDBCDAO implements MealDAO_interface {
 //		
 //		System.out.println(mealVO3.getMealPrice());
 //		System.out.println(mealVO3.getMealSts());
+		
+		/*searchbymealsts*/
+		
+		List<MealVO> list = dao.searchByMealSts(0);
+		for(MealVO mealVO5 : list) {
+			System.out.println(mealVO5.getMeal_no());
+		}
 		
 		/*-------------------getall����-------------------*/
 		
