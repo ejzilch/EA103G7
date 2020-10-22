@@ -3,9 +3,10 @@
 
 <html>
 <head>
-<title>員工管理主頁</title>
+<title>會員管理主頁</title>
 <script src="https://kit.fontawesome.com/d6c1e36c40.js" crossorigin="anonymous"></script>
 <style>
+
 	#loc{
  		position: relative;
 		top: 150px;
@@ -27,10 +28,10 @@
 	<div id="content">
 	
 	<div id="container">
-	<div id="loc"  style="margin-left:100px">
+	<div id="loc" style="margin-left:100px">
 	
-	<h3 style="margin-left:135px">員工管理主頁</h3>
-	
+	<h3 style="margin-left:135px">會員管理主頁</h3>
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color:red">請修正以下錯誤:</font>
@@ -41,27 +42,27 @@
 		</ul>
 	</c:if>
 	
-	
 	<h5>資料查詢:</h5>
 	
 	<ul>
+	  
 	  <li>
-	    <FORM METHOD="post" ACTION="emp.do" >
-	        <b>輸入員工編號 :</b>
-	        <input type="text" name="emp_no" placeholder="EMP0001" size="6px">
+	    <FORM METHOD="post" ACTION="mem.do" >
+	        <b>輸入會員編號 :</b>
+	        <input type="text" name="mem_no" placeholder="MEM0001" size="6px">
 	        <input type="hidden" name="action" value="getOne_For_Display">
 	        <input type="submit" value="送出">
 	    </FORM>
 	  </li>
-	  
-	  <jsp:useBean id="empSvc" scope="page" class="com.emp.model.EmpService" />
+	
+	  <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 	   
 	  <li>
-	     <FORM METHOD="post" ACTION="emp.do" >
-	       <b>選擇員工編號:</b>
-	       <select size="1" name="emp_no">
-	         <c:forEach var="empVO" items="${empSvc.all}" > 
-	          <option value="${empVO.emp_no}">${empVO.emp_no}
+	     <FORM METHOD="post" ACTION="mem.do" >
+	       <b>選擇會員編號:</b>
+	       <select size="1" name="mem_no">
+	         <c:forEach var="memVO" items="${memSvc.all}" > 
+	          <option value="${memVO.mem_no}">${memVO.mem_no}
 	         </c:forEach>   
 	       </select>
 	       <input type="hidden" name="action" value="getOne_For_Display">
@@ -70,11 +71,11 @@
 	  </li>
 	  
 	  <li>
-	     <FORM METHOD="post" ACTION="emp.do" >
-	       <b>選擇員工姓名:</b>
-	       <select size="1" name="emp_no">
-	         <c:forEach var="empVO" items="${empSvc.all}" > 
-	          <option value="${empVO.emp_no}">${empVO.emp_name}
+	     <FORM METHOD="post" ACTION="mem.do" >
+	       <b>選擇會員姓名:</b>
+	       <select size="1" name="mem_no">
+	         <c:forEach var="memVO" items="${memSvc.all}" > 
+	          <option value="${memVO.mem_no}">${memVO.mem_name}
 	         </c:forEach>   
 	       </select>
 	       <input type="hidden" name="action" value="getOne_For_Display">
@@ -82,14 +83,10 @@
 	     </FORM>
 	  </li>
 	</ul>
-
-	&emsp;&emsp;&ensp;<a class="btn btn-outline-secondary" href="listAllEmp.jsp" role="button"><i class="fas fa-file-alt" style="font-size:20px"></i>&ensp;所有員工列表</a>
-	<p><p>
 	
-	<h5>員工管理:</h5>
+	&emsp;&emsp;&ensp;<a class="btn btn-outline-secondary" href="listAllMem.jsp" role="button"><i class="fas fa-file-alt" style="font-size:20px"></i>&ensp;所有會員資料</a>
+	&emsp;&emsp;&ensp;<a class="btn btn-outline-secondary" href="listAllMem_sts.jsp" role="button"><i class="fas fa-file-alt" style="font-size:20px"></i>&ensp;所有會員權限</a>
 	
-	  &emsp;&emsp;&ensp;<a class="btn btn-outline-secondary" href="addEmp.jsp" role="button"><i class="fas fa-user-plus" style="font-size:20px"></i>&ensp;新增員工</a>
-	  
 	</div>
 	</div>
 	</div>

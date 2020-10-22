@@ -37,6 +37,7 @@ public class AuthFilter implements Filter {
 		}
 		// 各項權限所包含的全部路徑
 		List<String> fa0001 = new ArrayList<>();
+		fa0001.add(req.getContextPath() + "/back-end/emp/emp.do");
 		fa0001.add(req.getContextPath() + "/back-end/emp/select_page.jsp");
 		fa0001.add(req.getContextPath() + "/back-end/emp/addEmp.jsp");
 		fa0001.add(req.getContextPath() + "/back-end/emp/listAllEmp.jsp");
@@ -46,6 +47,7 @@ public class AuthFilter implements Filter {
 		fa0001.add(req.getContextPath() + "/back-end/emp/update_emp_sts.jsp");
 		
 		List<String> fa0002 = new ArrayList<>();
+		fa0002.add(req.getContextPath() + "/back-end/mem/mem.do");
 		fa0002.add(req.getContextPath() + "/back-end/mem/select_page_mem.jsp");
 		fa0002.add(req.getContextPath() + "/back-end/mem/listAllMem.jsp");
 		fa0002.add(req.getContextPath() + "/back-end/mem/listAllMem_sts.jsp");

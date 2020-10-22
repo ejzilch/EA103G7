@@ -5,20 +5,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://kit.fontawesome.com/d6c1e36c40.js" crossorigin="anonymous"></script>
 <title>員工登入</title>
 
 <style>
 	#loc{
-		position: absolute;
+ 		position: relative;
 		top: 150px;
-		left: 300px;
 		z-index: 10;
+		font-size: 150%;
+	}
+	#container{
+	  	margin:0 auto;
+	  	width: 600px;
 	}
 </style>
 
 </head>
 <body>
 	
+<div class="wrapper">
+	
+	<div id="content">
+	
+	<div id="container">
 	<div id="loc">
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -31,17 +41,17 @@
 	</c:if>
 	
 	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/emp/emp.do" style="margin-bottom: 0px;">
-		<table border=1>
+		<table style="margin-left:100px">
 				<tr>
 					<td colspan=2 align=center>
-						<h4>員工登入</h4>
+						<h4>員&ensp;工&ensp;登&ensp;入</h4>
 					</td>
 				</tr>
 
 				<tr>
 					<td>
 						<p align=right>
-							<b>員工編號:</b>
+							<b><i class="fas fa-user"></i>&ensp;員工編號:</b>
 					</td>
 					<td>
 						<p>
@@ -52,7 +62,7 @@
 				<tr>
 					<td>
 						<p align=right>
-							<b>密碼:</b>
+							<b><i class="fas fa-user"></i>&ensp;員工密碼:</b>
 					</td>
 					<td>
 						<p>
@@ -63,7 +73,7 @@
 				<tr>
 					<td colspan=2 align=center>
 						
-						<input type=submit value="登入">
+						<label style="cursor:pointer"><i class="fas fa-sign-in-alt" style="font-size:40px"></i><input type="submit" value="登入" style="display:none"></label>
 						<input type="hidden" name="action" value="login">
 						
 					</td>
@@ -71,7 +81,9 @@
 			</table>
 		</FORM>
 		</div>
-		
+	</div>
+	</div>
+</div>
 		<jsp:include page="/back-end/siderbar/siderbar.jsp" />
 		
 </body>

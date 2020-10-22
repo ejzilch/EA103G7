@@ -9,7 +9,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-public class ForgetPsw {
+public class ForgetPswMail {
 	// 設定傳送郵件:至收信人的Email信箱,Email主旨,Email內容
 	public void sendMail(String to, String subject, String messageText) {
 	   try {
@@ -21,8 +21,8 @@ public class ForgetPsw {
 		   props.put("mail.smtp.port", "587");
        // ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
        // ●須將myGmail的【安全性較低的應用程式存取權】打開
-	     final String myGmail = "ea103g6@gmail.com";
-	     final String myGmail_password = "etvehbslckxoyavc";
+	     final String myGmail = "ixlogic.wu@gmail.com";
+	     final String myGmail_password = "CCC45678CCC";
 		   Session session = Session.getInstance(props, new Authenticator() {
 			   protected PasswordAuthentication getPasswordAuthentication() {
 				   return new PasswordAuthentication(myGmail, myGmail_password);
