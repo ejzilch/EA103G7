@@ -212,7 +212,7 @@
 						</tr>
 						<tr>
 							<td>通知內容:<font color=red><b>*</b></font></td><br>
-							<td><textarea style="width:400px;height:100px;" name="is_cont" value="<%=isVO.getIs_cont()%>"></textarea></td>
+							<td><textarea style="width:400px;height:100px;" name="is_cont" placeholder="<%=isVO.getIs_cont()%>"></textarea></td>
 						</tr>
 						<tr>
 							<td>通知日期:<font color=red><b>*</b></font></td>
