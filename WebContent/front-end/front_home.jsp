@@ -179,7 +179,7 @@ padding-right: 17px;
 		id="ftco-navbar">
 		<div class="container">
 				<a class="navbar-brand"
-				href="<%=request.getContextPath()%>/front-end/front/index.jsp">PoT</a>
+				href="<%=request.getContextPath()%>/front-end/front_home.jsp">PoT</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -188,7 +188,7 @@ padding-right: 17px;
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a
-						href="<%=request.getContextPath()%>/front-end/front/index.jsp"
+						href="<%=request.getContextPath()%>/front-end/front_home.jsp"
 						class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="" class="nav-link">Menu</a></li>
 				<li class="nav-item"><a
@@ -201,7 +201,7 @@ padding-right: 17px;
 					<li class="nav-item"><a href="" class="nav-link">餐廳資訊</a></li>
 					<li class="nav-item"><a href="" class="nav-link">候位狀況</a></li>
 					<li class="nav-item"><a href="" class="nav-link">我要訂餐</a></li>
-					<li class="nav-item"><a href="" class="nav-link">我要定位</a></li>
+					<li class="nav-item"><a href="" class="nav-link">我要訂位</a></li>
 				</ul>
 			</div>
 		</div>
@@ -402,8 +402,6 @@ padding-right: 17px;
 				<img class="d-block w-100" src="<%=request.getContextPath()%>/front-end/front/images/twL_ad_20B20_xym5ycjdaj.jpg"
 					alt="twL_ad_20B20_xym5ycjdaj.jpg">
 			</div>
-
-
 		</div>
 	</div>
 

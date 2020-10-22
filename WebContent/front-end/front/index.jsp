@@ -43,17 +43,7 @@
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 <!-- 其它 html -->
 <!-- body 結束標籤之前，載入Bootstrap 的 JS 及其相依性安裝(jQuery、Popper) -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-	crossorigin="anonymous"></script>
+
 </head>
 <style type="text/css" media="screen">
 #img1 {
@@ -65,25 +55,29 @@
 	background-color: #53E355;
 	z-index: 1;
 }
+
 .heading-section h2 {
-    font-size: 75px;
-    font-weight: 900;
-    line-height: 1.2;
-     color: #cec2b4;
+	font-size: 75px;
+	font-weight: 900;
+	line-height: 1.2;
+	color: #cec2b4;
 }
 
 body {
-    font-family: "Poppins", Arial, sans-serif;
-    background: #fff;
-    font-size: 17px;
-    line-height: 2;
-    font-weight: 400;
-    color: #ffffff;
+	font-family: "Poppins", Arial, sans-serif;
+	background: #fff;
+	font-size: 17px;
+	line-height: 2;
+	font-weight: 400;
+	color: #ffffff;
 }
 /*   #img2 {
 
             z-index: 2;
         } */
+.ftco-navbar-light .navbar-nav>.nav-item.cta>a {
+	background: none;
+}
 </style>
 <script>
 	$(function() {
@@ -155,8 +149,12 @@ body {
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a href="index.html" class="nav-link">推薦菜色</a></li>
-					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front/front_news-11.jsp" class="nav-link">最新消息</a></li>
-					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/front/front_ad_new.jsp" class="nav-link">最新活動</a></li>
+					<li class="nav-item"><a
+						href="<%=request.getContextPath()%>/front-end/front/front_news-11.jsp"
+						class="nav-link">最新消息</a></li>
+					<li class="nav-item"><a
+						href="<%=request.getContextPath()%>/front-end/front/front_ad_new.jsp"
+						class="nav-link">最新活動</a></li>
 					<li class="nav-item"><a href="menu.html" class="nav-link">評價總覽</a></li>
 					<li class="nav-item"><a href="blog.html" class="nav-link">餐廳資訊</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">候位狀況</a></li>
@@ -278,31 +276,31 @@ body {
 		</div>
 	</section>
 
-<section class="ftco-section img"
+	<section class="ftco-section img"
 		style="background-image: url(images/storeBg.jpg)"
 		data-stellar-background-ratio="0.5">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 d-flex">
-						<div class="img img-1 mr-md-2"
-							style="background-image: url(images/HA.gif);"></div>
-						<div class="img img-2 ml-md-2"
-							style="background-image: url(images/HA.gif);"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7 d-flex">
+					<div class="img img-1 mr-md-2"
+						style="background-image: url(images/HA.gif);"></div>
+					<div class="img img-2 ml-md-2"
+						style="background-image: url(images/HA.gif);"></div>
+				</div>
+				<div class="col-md-5 wrap-about pt-5 pt-md-5 pb-md-3 ftco-animate">
+					<div class="heading-section mb-4 my-5 my-md-0">
+						<span class="subheading">About</span>
+						<h2 class="mb-4">吃胖吧PoT</h2>
 					</div>
-					<div class="col-md-5 wrap-about pt-5 pt-md-5 pb-md-3 ftco-animate">
-						<div class="heading-section mb-4 my-5 my-md-0">
-							<span class="subheading">About</span>
-							<h2 class="mb-4">吃胖吧PoT</h2>
-						</div>
-						<p>這裡可以放我們餐廳的介紹ㄎㄎ</p>
-						<p class="time">
-							<span>Mon - Fri <strong>8AM - 11 PM</strong></span> <span><a
-								href="#">+ 1-978-123-4567</a></span>
-						</p>
-<!-- 					</div> -->
+					<p>這裡可以放我們餐廳的介紹ㄎㄎ</p>
+					<p class="time">
+						<span>Mon - Fri <strong>8AM - 11 PM</strong></span> <span><a
+							href="#">+ 1-978-123-4567</a></span>
+					</p>
 				</div>
 			</div>
 		</div>
+
 	</section>
 
 
@@ -319,31 +317,31 @@ body {
 			</ol>
 
 			<div class="carousel-inner">
-			<div class="carousel-item active ">
-				<%@ include file="page1-1.file"%>
-				
+				<div class="carousel-item active ">
+					<%@ include file="page1-1.file"%>
+
 					<c:forEach var="newsVO" items="${list}" begin="<%=pageIndex%>"
 						end="<%=pageIndex+rowsPerPage-1%>">
 						<h3>${newsVO.news_cont}</h3>
 						<h4>${newsVO.news_date}</h4>
 					</c:forEach>
-					
+
 				</div>
 				<!-- 				<div class="carousel-item active ">123</div> -->
 				<!-- 				<div class="carousel-item ">456</div> -->
 				<!-- 				<div class="carousel-item ">789</div> -->
-				<a class="carousel-control-prev" href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>"
+				<a class="carousel-control-prev"
+					href="<%=request.getRequestURI()%>?whichPage=<%=whichPage - 1%>"
 					role="button" data-slide="prev"> <span
 					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>"
+				</a> <a class="carousel-control-next"
+					href="<%=request.getRequestURI()%>?whichPage=<%=whichPage + 1%>"
 					role="button" data-slide="next"> <span
 					class="carousel-control-next-icon" aria-hidden="true"></span> <span
 					class="sr-only">Next</span>
 				</a>
-			
 			</div>
-			
 		</div>
 	</div>
 	<!-- ----------------------------------------- -->
@@ -365,7 +363,7 @@ body {
 					alt="twL_ad_20B20_xym5ycjdaj.jpg">
 			</div>
 
-	
+
 		</div>
 	</div>
 
@@ -496,11 +494,21 @@ body {
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
+
+
+	<!-- 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" -->
+	<!-- 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" -->
+	<!-- 		crossorigin="anonymous"></script> -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
 </body>
 <style type="text/css" media="screen">
-.ftco-navbar-light .navbar-nav>.nav-item.cta>a {
-	background: none;
-}
 </style>
 
 

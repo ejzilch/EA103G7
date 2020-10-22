@@ -61,6 +61,17 @@ padding-right: 17px;
 	opacity: 0;
 	background: #000000;
 }
+.top {
+    background: transparent !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background: rgba(0, 0, 0, 5) !important;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
 
 </style>
 </head>
@@ -173,10 +184,10 @@ padding-right: 17px;
 	</div>
 	<nav
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light navbar-fixed-top"
-		id="ftco-navbar">
+		id="ftco-navbar" style="border-bottom:none">
 		<div class="container">
 				<a class="navbar-brand"
-				href="<%=request.getContextPath()%>/front-end/front/index.jsp">PoT</a>
+				href="<%=request.getContextPath()%>/front-end/front_home.jsp">PoT</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -185,20 +196,20 @@ padding-right: 17px;
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a
-						href="<%=request.getContextPath()%>/front-end/front/index.jsp"
+						href="<%=request.getContextPath()%>/front-end/front_home.jsp"
 						class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="" class="nav-link">Menu</a></li>
 				<li class="nav-item"><a
-					href="<%=request.getContextPath()%>/front-end/front/front_news.jsp"
+					href="<%=request.getContextPath()%>/front-end/front/front_news-11.jsp"
 					class="nav-link">News</a></li>
 				<li class="nav-item"><a
-						href="<%=request.getContextPath()%>/front-end/front/front_ad.jsp"
+						href="<%=request.getContextPath()%>/front-end/front/front_ad_new.jsp"
 						class="nav-link">最新活動</a></li>
 					<li class="nav-item"><a href="" class="nav-link">評價總覽</a></li>
 					<li class="nav-item"><a href="" class="nav-link">餐廳資訊</a></li>
 					<li class="nav-item"><a href="" class="nav-link">候位狀況</a></li>
 					<li class="nav-item"><a href="" class="nav-link">我要訂餐</a></li>
-					<li class="nav-item"><a href="" class="nav-link">我要定位</a></li>
+					<li class="nav-item"><a href="" class="nav-link">我要訂位</a></li>
 				</ul>
 			</div>
 		</div>
@@ -224,7 +235,7 @@ padding-right: 17px;
 					<h1 class="mb-2 bread">最新活動</h1>
 					<p class="breadcrumbs">
 						<span class="mr-2"><a
-							href="<%=request.getContextPath()%>/front-end/front/index.jsp">Home
+							href="<%=request.getContextPath()%>/front-end/front_home.jsp">Home
 								<i class="ion-ios-arrow-forward"></i>
 						</a></span>
 				</div>

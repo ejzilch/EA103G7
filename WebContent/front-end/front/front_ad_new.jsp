@@ -125,6 +125,9 @@ container {
 	height: 100%;
 	width: 100%;
 }
+#title{
+color: #3e2605
+}
 </style>
 <%@ include  file="/front-end/headfinish.jsp"%>
 <div class="container">
@@ -137,7 +140,7 @@ container {
 		</ul>
 	</div>
 
-	<hr class="mt-2 mb-5">
+	<hr class="mt-2 mb-5" style="border-top:none">
 
 	<div class="row text-center text-lg-left" >
 		<%@ include file="page1-1.file"%>
@@ -153,11 +156,11 @@ container {
 				</a>
 			</div>
 
-			<div class="col-lg-3 col-md-4 col-6"  style="color: #3e2605;">
+			<div class="col-lg-3 col-md-4 col-6" >
 				<div>${adVO.ad_add_date}</div>
 				
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ad/ad.do">
-					<a href="#" class="d-block mb-4 h-100" style="font-size: 20px">${adVO.ad_title}<br>
+					<a href="#" class="d-block mb-4 h-100 " style="font-size: 20px" id="title">${adVO.ad_title}<br>
 						<button type="submit" class="btn btn-outline-dark"
 							style="border-radius: 100%" name="action"
 							value="getFrontOne_For_Display">詳</button>
