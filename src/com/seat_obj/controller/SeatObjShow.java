@@ -51,7 +51,6 @@ public class SeatObjShow extends HttpServlet implements Runnable {
 					}
 					// 輸入完畢，清空緩衝
 					sos.flush();
-					sos.close();
 				} else {
 					// 將bytes位元用ByteArrayInputStream輸入
 					ByteArrayInputStream bais = new ByteArrayInputStream(seatObjVO.getSeat_obj());
@@ -61,6 +60,8 @@ public class SeatObjShow extends HttpServlet implements Runnable {
 					while (bais.read(buffer) != -1) {
 						sos.write(buffer);
 					}
+					// 輸入完畢，清空緩衝
+					sos.flush();
 				}
 			}
 		} catch (IOException e) {

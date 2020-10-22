@@ -1,11 +1,3 @@
-* {
-	box-sizing: border-box;
-}
-
-body {
-	margin: 0;
-}
-
 .rotate-img {
 	transform: rotate(90deg);
 }

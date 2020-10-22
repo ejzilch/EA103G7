@@ -219,7 +219,8 @@
 						<c:set target="${map}" property="0" value="座位"/>
 						<c:set target="${map}" property="1" value="障礙物"/>
 						<c:set target="${map}" property="2" value="背景圖"/>
-					<%@ include file="pages/page1.file"%><label>　　　</label><input type="button" value="回桌位設定" onclick="location.href='<%=request.getContextPath()%>/back-end/seat/editSeat.jsp'">
+					<%@ include file="pages/page1.file"%><label>　　　</label>
+					<input type="button" value="回桌位設定" onclick="location.href='<%=request.getContextPath()%>/back-end/seat/editSeat.jsp'">
 						<c:forEach var="SeatObjVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 							<tr>
 							<td>

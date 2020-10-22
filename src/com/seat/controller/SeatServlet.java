@@ -1,11 +1,11 @@
 package com.seat.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 //import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,13 +47,13 @@ public class SeatServlet extends HttpServlet {
 //				System.out.println(req.getParameter("jsonDataStr"));
 				// NEW JSONObject Array
 				SeatService seatSvn = new SeatService();
-
 				List<JSONObject> objArray = new ArrayList<JSONObject>();
 				JSONArray jsonArray = new JSONArray(req.getParameter("jsonDataStr"));
 				// get JSONObject add objArray
 				for (Object jsonObjArray : jsonArray) {
 					objArray.add((JSONObject) jsonObjArray);
 				}
+				List<SeatVO> seatVOList = seatSvn.getAll();
 				// select objArray all element compare
 				for (int i = 0; i < objArray.size(); i++) {
 					/*********** 物件沒有編號代表是新clone物件，執行新增 ***********/
@@ -66,7 +66,6 @@ public class SeatServlet extends HttpServlet {
 							return;
 						}
 						/*********** 取出資料庫所有座位物件，比對this座位 ***********/
-						List<SeatVO> seatVOList = seatSvn.getAll();
 						for (SeatVO seatVO : seatVOList) {
 							/*********** 新增的物件，如果資料庫這個樓層，這個位子已經有物件，不再新增 ***********/
 							if ((seatVO.getSeat_x().equals(Double.valueOf(objArray.get(i).get("seat_x").toString()))
@@ -134,6 +133,18 @@ public class SeatServlet extends HttpServlet {
 				}
 				/*********** 有執行過一次更新updataStatus=true，否則false ***********/
 				if (updataStatus) {
+					PrintWriter out = res.getWriter();
+					SeatService seatSvc = new SeatService();
+					List<SeatVO> seatVOList1 = seatSvc.getAll();
+					List<JSONObject> jsonObjectList = new ArrayList<JSONObject>();
+					for (SeatVO seatVO : seatVOList1) {
+						if (floor.equals(seatVO.getSeat_f().toString())) {
+							JSONObject jsonObject = new JSONObject(seatVO.toString());
+							jsonObjectList.add(jsonObject);
+						}
+					}
+					out.print(jsonObjectList.toString());
+					out.close();
 					res.setStatus(HttpServletResponse.SC_OK);
 					return;
 				} else {
@@ -158,18 +169,26 @@ public class SeatServlet extends HttpServlet {
 			}
 			return;
 		}
-		/*********** 編輯座位列表換頁 ***********/
-		switch (Integer.parseInt(floor)) {
-		case 1:
-			req.setAttribute("floor", 1);
-			RequestDispatcher failureView = req.getRequestDispatcher("/back-end/seat/editSeat.jsp");
-			failureView.forward(req, res);
-			break;
-		case 2:
-			req.setAttribute("floor", 2);
-			RequestDispatcher failureView2 = req.getRequestDispatcher("/back-end/seat/editSeat.jsp");
-			failureView2.forward(req, res);
-			break;
+		
+		/*********** 座位編輯換頁 ***********/
+		if ("floor_load".equals(action)) {
+			if (req.getParameter("floor") == null) {
+				return;
+			}
+			PrintWriter out = res.getWriter();
+			String floor1 =req.getParameter("floor");
+			SeatService seatSvc = new SeatService();
+			List<SeatVO> seatVOList = seatSvc.getAll();
+			List<JSONObject> jsonObjectList = new ArrayList<JSONObject>();
+			for (SeatVO seatVO : seatVOList) {
+				if (floor1.equals(seatVO.getSeat_f().toString())) {
+					JSONObject jsonObject = new JSONObject(seatVO.toString());
+					jsonObjectList.add(jsonObject);
+				}
+			}
+			out.print(jsonObjectList.toString());
+			out.close();
+			return;
 		}
 	}
 }
