@@ -9,6 +9,7 @@ form {
 .blank {
 	height: 100%;
 }
+
 div.container {
 	width: 1800px;
 }
@@ -96,9 +97,14 @@ img {
 	display: none;
 }
 
-#time_peri_no, #floor_list, #people , #res_date{
+select#time_peri_no, select#floor_list, input#people, input#res_date {
 	width: 180px;
 	height: 40px;
 	font-size: 20px;
 	text-align: center;
+	position: relative;
+}
+
+button#orderSeat {
+	position: relative;
 }

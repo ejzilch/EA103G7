@@ -185,40 +185,6 @@ public class SeatObjServlet extends HttpServlet {
 		String seat_obj_no = req.getParameter("seat_obj_no");
 		if (!(seat_obj_no.equals("") || seat_obj_no == null || req.getQueryString() == null)) {
 
-//			// 獲取圖片來源，將queryString丟入查詢
-//			SeatObjService seatObjSvc = new SeatObjService();
-//			SeatObjVO seatObjVO = seatObjSvc.getOneSeatObj(seat_obj_no);
-//
-//			// 建立圖片的輸出管
-//			ServletOutputStream sos = res.getOutputStream();
-//
-//			// 條件判斷
-//			if (seatObjVO.getSeat_obj() == null) {
-//				sos.println("圖片無法顯示 ！<br>");
-//			} else {
-//				if (seatObjVO.getSeat_obj().length == 0) {
-//					byte[] null_pic = getPictureByteArray(getServletContext().getRealPath("/images/null.jpg"));
-//					ByteArrayInputStream bais = new ByteArrayInputStream(null_pic);
-//					while (bais.read(null_pic) != -1) {
-//						sos.write(null_pic);
-//					}
-//					// 輸入完畢，清空緩衝
-//					sos.flush();
-//					sos.close();
-//				} else {
-//					// 將bytes位元用ByteArrayInputStream輸入
-//					ByteArrayInputStream bais = new ByteArrayInputStream(seatObjVO.getSeat_obj());
-//					// 設定緩衝
-//					byte[] buffer = new byte[4 * 1024];
-//					// 輸出，當無字時，read()返回-1
-//					while (bais.read(buffer) != -1) {
-//						sos.write(buffer);
-//					}
-//					// 輸入完畢，清空緩衝
-//					sos.flush();
-//					sos.close();
-//				}
-//			}
 			SeatObjShow seatObjShow = new SeatObjShow(req, res, seat_obj_no);
 			seatObjShow.run();
 		}
