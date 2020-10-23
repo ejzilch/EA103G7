@@ -6,10 +6,6 @@
 	MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>
 
-<%
-	MemVO memVO2 = (MemVO) session.getAttribute("memVO2");
-%>
-
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>

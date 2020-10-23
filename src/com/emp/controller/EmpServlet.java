@@ -21,6 +21,8 @@ import com.emp_auth.model.Emp_authService;
 import com.emp_auth.model.Emp_authVO;
 import com.fun_auth.model.Fun_authService;
 import com.fun_auth.model.Fun_authVO;
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
 
 public class EmpServlet extends HttpServlet {
 

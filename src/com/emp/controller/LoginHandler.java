@@ -1,22 +1,22 @@
 package com.emp.controller;
 
-import com.mem.model.MemService;
-import com.mem.model.MemVO;
+import com.emp.model.EmpService;
+import com.emp.model.EmpVO;
 
 public class LoginHandler {
 	
 	protected boolean allowUser(String account, String password) {
 		
-		MemVO memVO = new MemVO();
-		MemService memSvc = new MemService();
+		EmpVO empVO = new EmpVO();
+		EmpService empSvc = new EmpService();
 		
-		memVO = memSvc.login(account);
+		empVO = empSvc.getOneEmp(account);
 		
-		if (memVO == null) {
+		if (empVO == null) {
 			return false;
 		}
 				
-		if ((memVO.getMem_act()).equals(account) && (memVO.getMem_psw()).equals(password) && memVO.getMem_sts() == 1) {
+		if ((empVO.getEmp_no()).equals(account) && (empVO.getEmp_psw()).equals(password) && empVO.getEmp_sts() == 1) {
 		    return true;
 		} else {
 		    return false;

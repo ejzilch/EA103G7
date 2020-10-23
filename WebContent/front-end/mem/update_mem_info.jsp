@@ -6,10 +6,6 @@
 	MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>
 
-<%
-	MemVO memVO2 = (MemVO) session.getAttribute("memVO2");
-%>
-
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -143,6 +139,11 @@
 	<input type="hidden" name="mem_no" value="${memVO2.mem_no}">
 	<input type="hidden" name="action" value="update_i">
 	</FORM>
+	
+	<form action="<%=request.getContextPath() %>/front-end/mem/login_success_mem.jsp">
+		<input type="submit" value="回功能列表" style="margin-left:245px">
+	</form>
+	
 	</div>
 	
 <script>
