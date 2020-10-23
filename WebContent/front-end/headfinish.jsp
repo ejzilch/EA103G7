@@ -515,7 +515,6 @@
 	<script src="<%=request.getContextPath()%>/front-end/js/main.js"></script>
 	
 	<!--為了顯示地址選單用 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/front-end/js/jquery.twzipcode.min.js"></script>
 	<%-- script 結束 --%>
 </body>
