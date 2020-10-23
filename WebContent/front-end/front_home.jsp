@@ -105,7 +105,7 @@ padding-right: 17px;
 	<div class="msg">
 		<a href="#" class="open-btn" id="addClass">
 			<button type="button" class="btn" style="box-shadow: 0 0 0; padding:0px" onclick="message()">
-				<img src="<%=request.getContextPath()%>/front-end/images/msg.png" alt="">
+				<img id="custSvc" src="<%=request.getContextPath()%>/front-end/images/msg.png">
 			</button>
 		</a>
 		<div class="container">
