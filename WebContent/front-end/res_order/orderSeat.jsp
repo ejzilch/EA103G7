@@ -16,7 +16,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/css/orderSeat.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-
+<style type="text/css">
+input, select {
+    padding: 5px 0px;
+    border: 0 none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+</style>
 </head>
 
 <body>
@@ -36,7 +43,7 @@
 		pageContext.setAttribute("ts", ts);
 	%>
 	<form method="post" action="<%=request.getContextPath()%>/res_order/ResOrderServlet.do">
-		<div class="container">
+		<div class="container" id="orderSeatCondition">
 			<select id="floor_list" name="floor_list">
 				<c:forEach var="seat_f" items="${ts}">
 					<option class="lt" value="${seat_f}">${seat_f}樓座位區</option>

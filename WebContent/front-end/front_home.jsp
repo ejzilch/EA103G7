@@ -246,7 +246,7 @@ padding-right: 17px;
 					<li class="nav-item"><a href="" class="nav-link">餐廳資訊</a></li>
 					<li class="nav-item"><a href="" class="nav-link">候位狀況</a></li>
 					<li class="nav-item"><a href="" class="nav-link">我要訂餐</a></li>
-					<li class="nav-item"><a href="" class="nav-link">我要訂位</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/front-end/res_order/orderSeat.jsp" class="nav-link">我要訂位</a></li>
 				</ul>
 			</div>
 		</div>
