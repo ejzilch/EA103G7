@@ -7,7 +7,7 @@
 <%@ page import="com.mem.model.*"%>
 
 <%
-	MemVO memVO2 = (MemVO) session.getAttribute("memVO2");
+	MemVO memVO2 = (MemVO) session.getAttribute("memVO2");	
 %>
 
 <!DOCTYPE html>
@@ -77,6 +77,9 @@
     background: rgba(0, 0, 0, 5) !important;
     color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
+}
+.unshow {
+	display: none;
 }
 
 </style>
@@ -257,14 +260,13 @@
 									</button>
 								</span>
 								<%-- 小鈴鐺圖示結束 --%>
-								<span class="mybb"><a href="<%=request.getContextPath() %>/front-end/mem/login_success_mem.jsp" class="myaa">會員中心</a></span>
-								<span class="mybb" id="sign"><a href="<%=request.getContextPath() %>/front-end/mem/addMem.jsp" class="myaa">註冊</a></span>
-								<span class="mybb" id="login"><a href="<%=request.getContextPath() %>/front-end/mem/login_mem.jsp" class="myaa">登入</a></span>
+								<span class="mybb"><a href="<%=request.getContextPath() %>/front-end/mem/login_success_mem.jsp" class="myaa"><span id="member">會員中心</span></a></span>
+								<span class="mybb"><a href="<%=request.getContextPath() %>/front-end/mem/addMem.jsp" class="myaa"><span id="sign">註冊</span></a></span>
+								<span class="mybb"><a href="<%=request.getContextPath() %>/front-end/mem/login_mem.jsp" class="myaa"><span id="login">登入</span></a></span>
 								
-									<!--以下尚未完工 -->
-<%-- 								<span class="mybb" id="mem_name" class="unshow"><a href="#" class="myaa">${memVO2.mem.name}</a></span> --%>
-<!-- 								<span class="mybb" id="hello" class="unshow"><a href="#" class="myaa">，您好！</a></span> -->
-<%-- 								<span class="mybb" id="logout" class="unshow"><a href="<%=request.getContextPath() %>/front-end/mem/login_mem.jsp" class="myaa">登出</a></span> --%>
+								<span class="mybb"><span id="mem_name" class="unshow">${memVO2.mem_name}</span></span>
+								<span class="mybb"><span id="hello" class="unshow">您好！</span></span>
+								<span class="mybb"><a href="<%=request.getContextPath() %>/front-end/mem/mem.do?action=logout" class="myaa"><span id="logout" class="unshow">登出</span></a></span>
 							</p>
 						</div>
 					</div>
@@ -313,7 +315,7 @@
 				class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate text-center mb-4"
 					style="height: 230px;">
-					<h1 class="mb-2 bread">最新活動</h1>
+					<h1 class="mb-2 bread"><span id="title">最新活動</span></h1>
 					<p class="breadcrumbs">
 						<span class="mr-2"><a
 							href="<%=request.getContextPath()%>/front-end/front_home.jsp">Home
@@ -487,14 +489,55 @@
 		}
 	</script>
 	
-	<!--判斷現在是登入或登出的狀態 -->
 	<script>
-		
+	
+		<!--判斷現在是登入或登出的狀態 -->
 		var sign = document.getElementById("sign");
 		var login = document.getElementById("login");
 		var mem_name = document.getElementById("mem_name");
 		var hello = document.getElementById("hello");
 		var logout = document.getElementById("logout");
+		
+		if (mem_name.innerText !== "") {
+			sign.classList.add('unshow');
+			login.classList.add('unshow');
+			mem_name.classList.remove('unshow');
+			hello.classList.remove('unshow');
+			logout.classList.remove('unshow');
+		} else {
+			sign.classList.remove('unshow');
+			login.classList.remove('unshow');
+			mem_name.classList.add('unshow');
+			hello.classList.add('unshow');
+			logout.classList.add('unshow');
+		}
+		
+		<!--判斷現在是否在會員中心頁面 -->
+		var member = document.getElementById("member");
+		var title = document.getElementById("title");
+		
+		var path = location.pathname;
+		if (path === '/EA103G7/front-end/mem/login_mem.jsp') {
+			title.innerHTML = '會員中心';
+		}
+		if (path === '/EA103G7/front-end/mem/login_success_mem.jsp') {
+			title.innerHTML = '會員中心';
+		}
+		if (path === '/EA103G7/front-end/mem/addMem.jsp') {
+			title.innerHTML = '會員中心';
+		}
+		if (path === '/EA103G7/front-end/mem/forgetPsw.jsp') {
+			title.innerHTML = '會員中心';
+		}
+		if (path === '/EA103G7/front-end/mem/showMemInfo.jsp') {
+			title.innerHTML = '會員中心';
+		}
+		if (path === '/EA103G7/front-end/mem/update_mem_info.jsp') {
+			title.innerHTML = '會員中心';
+		}
+		if (path === '/EA103G7/front-end/mem/mem.do') {
+			title.innerHTML = '會員中心';
+		}
 		
 	</script>
 	

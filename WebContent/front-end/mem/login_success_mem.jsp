@@ -2,10 +2,6 @@
     pageEncoding="BIG5"%>
 <%@ page import="com.mem.model.*"%>
     
-<% 
-	MemVO memVO2 = (MemVO) session.getAttribute("memVO2");
-%>
-
 <html>
 <head>
 <title>會員登入成功</title>
@@ -40,10 +36,10 @@
 		<input type="hidden" name="action" value="Update_info">
 	</FORM>
 		
-	<FORM METHOD="post" ACTION="mem.do" name="form1">
-		<input type="submit" value="登出"  style="margin-left:265px">
-		<input type="hidden" name="action" value="logout">
-	</FORM>
+<!-- 	<FORM METHOD="post" ACTION="mem.do" name="form1"> -->
+<!-- 		<input type="submit" value="登出"  style="margin-left:265px"> -->
+<!-- 		<input type="hidden" name="action" value="logout"> -->
+<!-- 	</FORM> -->
 	</div>
 	
 	<jsp:include page="/front-end/front/footer.jsp" />
