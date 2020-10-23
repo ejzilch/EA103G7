@@ -46,6 +46,7 @@ public class ResOrderServlet extends HttpServlet {
 		res.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		String goMeal = req.getParameter("goMeal");
+		System.out.println(goMeal);
 		HttpSession hs = req.getSession();
 		if ("order_seat".equals(action) && goMeal == null && "insert".equals(hs.getAttribute("insert"))) {
 			hs.removeAttribute("insert");

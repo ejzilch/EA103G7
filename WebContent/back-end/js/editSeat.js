@@ -240,7 +240,7 @@ $(document).ready(function() {
 						}).appendTo($label);
 						$("<label>").attr({
 							class: "seatLabel",
-						}).appendTo($drag);
+						}).text("桌名：").appendTo($drag);
 						var $label2 = $("div#container .drag .seatLabel").eq(_index);
 						$("<input>").attr({
 							type: "text",

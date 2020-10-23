@@ -38,7 +38,7 @@ public class TimePeriServlet extends HttpServlet {
 		String action = req.getParameter("action");
 
 		/**********************************
-		 ****依照日期判斷可選擇用餐時段****
+		 **** 依照日期判斷可選擇用餐時段****
 		 **********************************/
 		if ("getTimePeri".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -56,8 +56,11 @@ public class TimePeriServlet extends HttpServlet {
 				List<TimePeriVO> list = timePeriSvc.getAll();
 				List<JSONObject> jsonObjectList = new ArrayList<JSONObject>();
 				for (TimePeriVO timePeriVO : list) {
+					int time_start = timePeriVO.getTime_start().indexOf("PM") > 0
+							? Integer.parseInt((timePeriVO.getTime_start().substring(0, 2))) + 12
+							: Integer.parseInt((timePeriVO.getTime_start().substring(0, 2)));
 					if (format.format(toDay).equals(res_date)) {
-						if ((Integer.parseInt((timePeriVO.getTime_start().substring(0, 2))) > nowHours + 6)) {
+						if (time_start > nowHours + 6) {
 							JSONObject jsonObject = new JSONObject(timePeriVO.toString());
 							jsonObjectList.add(jsonObject);
 						}

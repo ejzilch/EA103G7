@@ -14,6 +14,17 @@ div.container {
 	width: 1800px;
 }
 
+div#orderSeatCondition.container {
+	top: 168px;
+	position: sticky;
+	z-index: 500;
+/* 	background: #FFFFFF; */
+}
+
+.navbar {
+	position: relative;
+}
+
 div#container.container {
 	height: 1000px;
 	width: 1400px;
@@ -103,6 +114,10 @@ select#time_peri_no, select#floor_list, input#people, input#res_date {
 	font-size: 20px;
 	text-align: center;
 	position: relative;
+}
+
+select#time_peri_no {
+	font-family: monospace;
 }
 
 button#orderSeat {
