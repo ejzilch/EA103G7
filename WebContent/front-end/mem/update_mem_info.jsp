@@ -115,28 +115,28 @@
 <!-- 	</table> -->
 	
 	<ul>
-		<li>會員姓名:<font color=red><b>*</b></font><input type="text" name="mem_name" size="45" value="${memVO2.mem_name}" required/></li>
+		<li>會員姓名:<font color=red><b>*</b></font><input type="text" name="mem_name" size="45" value="${memVO.mem_name}" required/></li>
 		
 		<li>密碼:<font color=red><b>*</b></font>&emsp;&emsp;<input type="password" name="mem_psw1" size="45" value="" required/></li>
 		<li>密碼確認:<font color=red><b>*</b></font><input type="password" name="mem_psw2" size="45" value="" required/></li>
 		<li>性別:&emsp;&emsp;&emsp;<label><input type="radio" name="mem_gen" size="45" value="男" />男</label>
  				<label><input type="radio" name="mem_gen" size="45" value="女" />女</label>
  				<label><input type="radio" name="mem_gen" size="45" value="其他" />其他</label></li>
-		<li>生日:<font color=red><b>*</b></font>&emsp;&emsp;&ensp;<input type="date" name="mem_bir" size="45" value="${memVO2.mem_bir}" required/></li>
-		<li>手機:<font color=red><b>*</b></font>&emsp;&emsp;<input type="text" name="mem_tel" size="45" value="${memVO2.mem_tel}" required/></li>
-		<li>e-mail:<font color=red><b>*</b></font>&ensp;<input type="email" name="mem_mail" size="45" value="${memVO2.mem_mail}" required/></li>
+		<li>生日:<font color=red><b>*</b></font>&emsp;&emsp;&ensp;<input type="date" name="mem_bir" size="45" value="${memVO.mem_bir}" required/></li>
+		<li>手機:<font color=red><b>*</b></font>&emsp;&emsp;<input type="text" name="mem_tel" size="45" value="${memVO.mem_tel}" required/></li>
+		<li>e-mail:<font color=red><b>*</b></font>&ensp;<input type="email" name="mem_mail" size="45" value="${memVO.mem_mail}" required/></li>
 		<li>地址:
 			<div id="zipcode3" style="width: 800px">
  			<div class="f3" data-role="county" name="city"></div>
 			<div class="f4" data-role="district" name="town"></div>
 			</div>
 			<br><br>
-			<input name="address" type="text" size="50px" value="${memVO2.mem_adrs}">
+			<input name="address" type="text" size="50px" value="${memVO.mem_adrs}">
 		</li>
 	</ul>
 	
 	<input type="submit" value="送出修改" style="margin-left:250px">
-	<input type="hidden" name="mem_no" value="${memVO2.mem_no}">
+	<input type="hidden" name="mem_no" value="${memVO.mem_no}">
 	<input type="hidden" name="action" value="update_i">
 	</FORM>
 	
@@ -166,7 +166,7 @@
 
 
 
-<span id="gen">${memVO2.mem_gen}</span>
+<span id="gen">${memVO.mem_gen}</span>
 <script>
 	
 	// 根據資料庫預設性別

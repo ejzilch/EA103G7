@@ -50,62 +50,62 @@
 	<table border="1" style="width:600px; margin-left:100px; background-color:#eee;">
 		<tr>
 			<td class="t">會員編號:&emsp;</td>
-			<td>&emsp;${memVO2.mem_no}</td>
+			<td>&emsp;${memVO.mem_no}</td>
 		</tr>
 		<tr>
 			<td class="t">會員姓名:&emsp;</td>
-			<td>&emsp;${memVO2.mem_name}</td>
+			<td>&emsp;${memVO.mem_name}</td>
 		</tr>
 		<tr>
 			<td class="t">帳號:&emsp;</td>
-			<td>&emsp;${memVO2.mem_act}</td>
+			<td>&emsp;${memVO.mem_act}</td>
 		</tr>
 		<tr>
 			<td class="t">性別:&emsp;</td>
-			<td>&emsp;${memVO2.mem_gen}</td>
+			<td>&emsp;${memVO.mem_gen}</td>
 		</tr>
 		<tr>
 			<td class="t">生日:&emsp;</td>
-			<td>&emsp;${memVO2.mem_bir}</td>
+			<td>&emsp;${memVO.mem_bir}</td>
 		</tr>
 		<tr>
 			<td class="t">手機:&emsp;</td>
-			<td>&emsp;${memVO2.mem_tel}</td>
+			<td>&emsp;${memVO.mem_tel}</td>
 		</tr>
 		<tr>
 			<td class="t">地址:&emsp;</td>
-			<td>&emsp;${memVO2.mem_adrs}</td>
+			<td>&emsp;${memVO.mem_adrs}</td>
 		</tr>
 		<tr>
 			<td class="t">e-mail:&emsp;</td>
-			<td>&emsp;${memVO2.mem_mail}</td>
+			<td>&emsp;${memVO.mem_mail}</td>
 		</tr>
 		<tr>
 			<td class="t">紅利點數:&emsp;</td>
-			<td>&emsp;${(memVO2.mem_bns == null) ? 0 : memVO2.mem_bns}</td>
+			<td>&emsp;${(memVO.mem_bns == null) ? 0 : memVO.mem_bns}</td>
 		</tr>
 		<tr>
 			<td class="t">是否可訂餐:&emsp;</td>
-			<td>&emsp;${(memVO2.mem_od_m == 0) ? "不可" : "可"}</td>
+			<td>&emsp;${(memVO.mem_od_m == 0) ? "不可" : "可"}</td>
 		</tr>
 		<tr>
 			<td class="t">是否可訂位:&emsp;</td>
-			<td>&emsp;${(memVO2.mem_od_r == 0) ? "不可" : "可"}</td>
+			<td>&emsp;${(memVO.mem_od_r == 0) ? "不可" : "可"}</td>
 		</tr>
 		<tr>
 			<td class="t">是否可評價:&emsp;</td>
-			<td>&emsp;${(memVO2.mem_review == 0) ? "不可" : "可"}</td>
+			<td>&emsp;${(memVO.mem_review == 0) ? "不可" : "可"}</td>
 		</tr>
 		<tr>
 			<td class="t">是否可檢舉:&emsp;</td>
-			<td>&emsp;${(memVO2.mem_repo == 0) ? "不可" : "可"}</td>
+			<td>&emsp;${(memVO.mem_repo == 0) ? "不可" : "可"}</td>
 		</tr>
 	</table>
 		
 		<p><p>
 		
 		<input type="submit" value="個資和密碼修改" style="margin-left:335px">
-		<input type="hidden" name="mem_no" value="${memVO2.mem_no}">
+		<input type="hidden" name="mem_no" value="${memVO.mem_no}">
 		<input type="hidden" name="action" value="Update_info">
 	
 	</FORM>

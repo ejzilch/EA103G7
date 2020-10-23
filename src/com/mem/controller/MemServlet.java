@@ -520,7 +520,7 @@ public class MemServlet extends HttpServlet {
 		if ("logout".equals(action)) {
 			
 			req.getSession().invalidate();
-	        res.sendRedirect(req.getContextPath() + "/front-end/mem/login_mem.jsp");
+	        res.sendRedirect(req.getContextPath() + "/front-end/front_home.jsp");
 			
 		}
 		

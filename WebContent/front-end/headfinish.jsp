@@ -355,7 +355,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-	        <button type="button" class="btn btn-primary" onclick="location.href='contact.html'">我要登入</button>
+	        <button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/front-end/mem/login_mem.jsp'">我要登入</button>
 	      </div>
 	    </div>
 	  </div>

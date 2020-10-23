@@ -131,7 +131,7 @@
 	
 <script>
 	
-	// 使被選過的權限無法再選
+	// 使被選過的權限打勾並顯示紅色
 	var check1 = document.getElementsByClassName("check1");
 	var arr1 = [];
 	for (let i = 0; i < check1.length; i++) {
