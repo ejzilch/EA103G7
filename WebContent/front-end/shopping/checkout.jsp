@@ -56,7 +56,7 @@ border:1px solid green;
 </head>
 <body>
 
-<jsp:include page="/front-end/head.jsp" flush="true"/>
+<jsp:include page="/front-end/headfinish.jsp" flush="true"/>
 
 <div class="container">
 	
