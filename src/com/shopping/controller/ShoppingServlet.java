@@ -20,7 +20,6 @@ import com.meal.model.MealVO;
 import com.meal_set.model.MealSetDAO;
 import com.meal_set.model.MealSetVO;
 
-import jdk.nashorn.internal.ir.debug.JSONWriter;
 
 @WebServlet("/Shopping.do")
 public class ShoppingServlet extends HttpServlet {
