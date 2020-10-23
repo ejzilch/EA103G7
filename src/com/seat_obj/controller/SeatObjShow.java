@@ -73,7 +73,6 @@ public class SeatObjShow extends HttpServlet implements Runnable {
 					sos.flush();
 					sos.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -13,12 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.SendResult;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.front_inform.model.Front_InformService;
 import com.res_detail.model.ResDetailService;
 import com.res_detail.model.ResDetailVO;
 import com.res_order.model.ResOrderService;
@@ -46,13 +44,12 @@ public class ResOrderServlet extends HttpServlet {
 		res.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		String goMeal = req.getParameter("goMeal");
-		System.out.println(goMeal);
 		HttpSession hs = req.getSession();
 		if ("order_seat".equals(action) && goMeal == null && "insert".equals(hs.getAttribute("insert"))) {
 			hs.removeAttribute("insert");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+
 			String res_date = req.getParameter("res_date");
 			String time_peri_no = req.getParameter("time_peri_no");
 			String floor = req.getParameter("floor_list");
@@ -70,10 +67,13 @@ public class ResOrderServlet extends HttpServlet {
 			if (seats_no == null) {
 				errorMsgs.add("請選擇座位");
 			}
+			if ("".equals(floor)) {
+				errorMsgs.add("請選擇樓層");
+			}
 			if ("".equals(people)) {
 				errorMsgs.add("請輸入訂位人數");
 			}
-//			System.out.println("樓層=" + floor);
+			
 
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/res_order/orderSeat.jsp");
@@ -93,12 +93,11 @@ public class ResOrderServlet extends HttpServlet {
 //			resOrderSvc.updateResOrder(next_res_no, resOrderVO.getMeal_order_no(), resOrderVO.getMem_no(), resOrderVO.getEmp_no(), resOrderVO.getRes_time(), java.sql.Date.valueOf(res_date), resOrderVO.getPeople(), resOrderVO.getTime_peri_no(), new Integer(1), resOrderVO.getSeat_sts());
 			req.setAttribute("res_no", next_res_no);
 			RequestDispatcher failureView = req.getRequestDispatcher("/front-end/res_order/getMemberResSeat.jsp");
-//			System.out.println("這筆訂單編號：" + next_res_no);
 
 			failureView.forward(req, res);
 			return;
 		}
-		if ("success".equals(goMeal) && "order_seat".equals(action)) {
+		if ("carry_on_res_meal".equals(goMeal) && "order_seat".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -119,10 +118,12 @@ public class ResOrderServlet extends HttpServlet {
 			if (seats_no == null) {
 				errorMsgs.add("請選擇座位");
 			}
+			if ("".equals(floor)) {
+				errorMsgs.add("請選擇樓層");
+			}
 			if ("".equals(people)) {
 				errorMsgs.add("請輸入訂位人數");
 			}
-//			System.out.println("樓層=" + floor);
 
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/res_order/orderSeat.jsp");
@@ -142,8 +143,12 @@ public class ResOrderServlet extends HttpServlet {
 
 			req.setAttribute("res_no", next_res_no);
 			RequestDispatcher failureView = req.getRequestDispatcher("/front-end/shopping/mealMenu2.jsp");
-//			System.out.println("這筆訂單編號：" + next_res_no);
 			failureView.forward(req, res);
+			return;
+		}
+		/********************** 去訂餐 **********************/
+		if ("go_res_meal".equals(action)) {
+			System.out.println("go_res_meal");
 			return;
 		}
 
@@ -189,7 +194,6 @@ public class ResOrderServlet extends HttpServlet {
 				SeatObjService seatObjSvc = new SeatObjService();
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject object = (JSONObject) jsonArray.get(i);
-//					System.out.println(object.get("seat_obj_no"));
 					SeatObjVO seatObjVO = seatObjSvc.getOneSeatObj(object.get("seat_obj_no").toString());
 					if (i == 0) {
 						sb.append("[{\"" + object.get("seat_no").toString() + "\"" + ":" + seatObjVO.getSeat_people()
@@ -233,6 +237,21 @@ public class ResOrderServlet extends HttpServlet {
 			return;
 		}
 		
-		res.sendRedirect(req.getContextPath()+"/front-end/res_order/getMemberResSeat.jsp");
+		/********************** 取消訂位 **********************/
+		if ("cancelSeatResOrder".equals(action)) {
+			System.out.println("cancelSeatResOrder");
+			return;
+		}
+		
+		/********************** 修改訂位 **********************/
+		if ("modifySeatPosition".equals(action)) {
+			System.out.println("modifySeatPosition");
+			return;
+		}
+		
+		
+		
+		// not do anything, go to the this page
+		res.sendRedirect(req.getContextPath() + "/front-end/res_order/getMemberResSeat.jsp");
 	}
 }
