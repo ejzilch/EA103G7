@@ -184,9 +184,9 @@ public class SeatObjServlet extends HttpServlet {
 		/**************************** 圖片顯示 ****************************/
 		String seat_obj_no = req.getParameter("seat_obj_no");
 		if (!(seat_obj_no.equals("") || seat_obj_no == null || req.getQueryString() == null)) {
-
 			SeatObjShow seatObjShow = new SeatObjShow(req, res, seat_obj_no);
 			seatObjShow.run();
+			return;
 		}
 	}
 

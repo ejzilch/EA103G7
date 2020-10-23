@@ -393,7 +393,7 @@ $(document).ready(function() {
 					$("<input>").attr({
 						type: "hidden",
 						name: "goMeal",
-						value: "success",
+						value: "carry_on_res_meal",
 					}).appendTo("div#orderSeatCondition.container");
 					form.submit();
 				});

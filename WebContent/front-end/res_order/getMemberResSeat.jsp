@@ -15,11 +15,14 @@
 <meta charset="UTF-8">
 <title>Order Seat</title>
 <link rel=stylesheet type="text/css" href="<%=request.getContextPath()%>/front-end/css/getMemberResSeat.css">
+<jsp:include page="/front-end/headfinish.jsp"></jsp:include>
 </head>
 <body>
-<table>
+<div class="container">
+<table class="table table-striped table-hover mx-auto w-auto">
 	<tr>
-		<th>訂位桌號</th>
+		<th>樓層</th>
+		<th>桌位</th>
 		<th>訂餐編號</th>
 <!-- 		<th>會員編號</th> -->
 <!-- 		<th>員工編號</th> -->
@@ -27,6 +30,8 @@
 		<th>預約訂位日期</th>
 		<th>用餐時段</th>
 		<th>人數</th>
+		<th>訊息狀態</th>
+		<th>入座狀態</th>
 		<th>修改座位</th>
 		<th>取消訂位</th>
 	</tr>
@@ -46,6 +51,11 @@
 		<tr>
 			<td>
 				<c:forEach var="resDetailVO" items="${resDetailSvc.getAllResNO(resOrderVO.res_no)}">
+					${seatSvc.getOneSeat(resDetailVO.seat_no).seat_f}樓
+				</c:forEach>
+			</td>
+			<td>
+				<c:forEach var="resDetailVO" items="${resDetailSvc.getAllResNO(resOrderVO.res_no)}">
 					${seatSvc.getOneSeat(resDetailVO.seat_no).seat_name}桌 
 				</c:forEach>
 			</td>
@@ -54,7 +64,11 @@
 					${resOrderVO.meal_order_no}
 				</c:if> 
 				<c:if test="${empty resOrderVO.meal_order_no}">
-					未訂餐
+					<form method="post" action="<%=request.getContextPath()%>/res_order/ResOrderServlet.do">
+						<input type="hidden" name="action" value="go_res_meal">
+						<font color="red">未訂餐</font><br>
+						<button type="submit" class="btn btn-primary">我要訂餐</button>
+					</form>
 				</c:if>
 			</td>
 <!-- 			<td> -->
@@ -84,10 +98,10 @@
 				<c:forEach  var="item" items="${map}">
 					<c:if test="${item.key eq resOrderVO.info_sts}">
 						<c:if test="${item.key eq 3}">
-							<label style="color: red" >${item.value}</label>
+							<font style="color: red" >${item.value}</font>
 						</c:if>
 						<c:if test="${item.key ne 3}">
-							<label style="color: blue" >${item.value}</label>
+							<font style="color: blue" >${item.value}</font>
 						</c:if>
 					</c:if>
 				</c:forEach>
@@ -102,14 +116,32 @@
 					</c:if>
 				</c:forEach>
 			</td>
+			<td>
+				<form method="post" action="<%=request.getContextPath()%>/res_order/ResOrderServlet.do">
+					<input type="hidden" name="res_order_no" value="${resOrderVO.res_no}">
+					<input type="hidden" name="action" value="modifySeatPosition">
+					<button type="submit" class="btn btn-warning">修改座位</button>
+				</form>
+			</td>
+			<td>
+				<form method="post" action="<%=request.getContextPath()%>/res_order/ResOrderServlet.do">
+					<input type="hidden" name="res_order_no" value="${resOrderVO.res_no}">
+					<input type="hidden" name="action" value="cancelSeatResOrder">
+					<button type="submit" class="btn btn-danger" >取消訂位</button>
+				</form>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
+
 <%@ include file="pages/page2.file"%>
 <input type="button" value="回首頁" onclick="location.href='<%=request.getContextPath()%>/back-end/seat_obj/addSeatObj.jsp'">
 <input type="button" value="回桌訂位畫面" onclick="location.href='<%=request.getContextPath()%>/front-end/res_order/orderSeat.jsp'">
-
-<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery-ui-1.12.1.js"></script>
+</div>
+<footer>
+<jsp:include page="/front-end/footer.jsp"></jsp:include>
+</footer>
+<script src="<%=request.getContextPath()%>/front-end/js/jquery-1.12.4.js"></script>
+<script src="<%=request.getContextPath()%>/front-end/js/getMemberResSeat.js"></script>
 </body>
 </html>
